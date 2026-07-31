@@ -479,6 +479,7 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
 			<optional>true</optional>
 		</dependency>
 
@@ -521,11 +522,13 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
+			<version>2.0.13</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
+			<version>2.0.13</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -545,6 +548,7 @@
 		<dependency>
 			<groupId>io.dropwizard.metrics</groupId>
 			<artifactId>metrics-annotation</artifactId>
+			<version>4.2.25</version>
 		</dependency>
 		<!-- Metrics is a Java library which gives you unparalleled insight into
 			what your code does in production. Metrics provides a powerful toolkit of
@@ -552,6 +556,7 @@
 		<dependency>
 			<groupId>io.dropwizard.metrics</groupId>
 			<artifactId>metrics-core</artifactId>
+			<version>4.2.25</version>
 		</dependency>
 		<!-- An addition to Metrics which provides the ability to run application-specific
 			health checks, allowing you to check your application's heath in production. -->
