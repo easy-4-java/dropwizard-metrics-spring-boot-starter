@@ -807,19 +807,7 @@
             <scope>provided</scope>
         </dependency>
 
-<<<<<<< Updated upstream
         
-=======
-        <!-- <dependency> <groupId>org.tinygroup</groupId> <artifactId>org.tinygroup.commons</artifactId>
-            <version>${org.tinygroup.commons.version}</version> </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.ryantenney.metrics/metrics-spring -->
-        <dependency>
-            <groupId>com.ryantenney.metrics</groupId>
-            <artifactId>metrics-spring</artifactId>
-            <version>${metrics-spring.version}</version>
-        </dependency> -->
->>>>>>> Stashed changes
 
         <!-- For Commons Lang3 -->
         <dependency>
