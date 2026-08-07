@@ -13,7 +13,7 @@
     <groupId>io.github.easy4j</groupId>
     <artifactId>dropwizard-metrics-spring-boot-starter</artifactId>
     <description>Spring Boot Starter For Dropwizard Metrics</description>
-    <version>3.4.x.20260527-SNAPSHOT</version>
+    <version>3.4.x.20260630-SNAPSHOT</version>
     <name>${project.groupId}:${project.artifactId}</name>
     <url>https://github.com/easy-4-java/${project.artifactId}</url>
     <packaging>jar</packaging>
@@ -404,6 +404,7 @@
     </profiles>
 
     <properties>
+        <java.version>17</java.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -802,7 +803,7 @@
         <!-- <dependency> <groupId>org.tinygroup</groupId> <artifactId>org.tinygroup.commons</artifactId>
             <version>${org.tinygroup.commons.version}</version> </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.ryantenney.metrics/metrics-spring -->
+        https://mvnrepository.com/artifact/com.ryantenney.metrics/metrics-spring
         <dependency>
             <groupId>com.ryantenney.metrics</groupId>
             <artifactId>metrics-spring</artifactId>
