@@ -26,11 +26,20 @@ import org.springframework.context.annotation.Import;
 
 import com.codahale.metrics.spring.boot.factory.support.MetricsAnnotationDrivenRegistrar;
 
+/**
+ * Enables annotation-driven Dropwizard Metrics: importing
+ * {@link com.codahale.metrics.spring.boot.factory.support.MetricsAnnotationDrivenRegistrar}
+ * activates the {@code @Metered}, {@code @Timed}, {@code @ExceptionMetered}
+ * and {@code @Counted} pointcut advisors.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
 @Import({ MetricsAnnotationDrivenRegistrar.class })
 public @interface EnableAnnotationMetrics {
-	
+
 }

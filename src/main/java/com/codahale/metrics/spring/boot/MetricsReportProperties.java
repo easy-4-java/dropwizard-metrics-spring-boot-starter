@@ -33,40 +33,71 @@ import com.codahale.metrics.spring.boot.property.RocketmqReporterProperties;
 import com.codahale.metrics.spring.boot.property.Slf4jReporterProperties;
 import com.codahale.metrics.spring.boot.property.ZabbixReporterProperties;
 
+/**
+ * Configuration properties for the Dropwizard Metrics reporters.
+ * <p>
+ * Bound to the {@code dropwizard.metrics.report.*} namespace. Aggregates the
+ * nested configuration for every supported reporter backend (console, CSV,
+ * database, Datadog, Ganglia, Graphite, InfluxDB, JMX, Kafka, Librato,
+ * New Relic, RocketMQ, SLF4J and Zabbix).</p>
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @ConfigurationProperties(prefix = MetricsReportProperties.PREFIX)
 public class MetricsReportProperties {
 
+	/** Configuration prefix for the metrics reporter properties. */
 	public static final String PREFIX = "dropwizard.metrics.report";
 
+	/**
+	 * Comma-separated list of reporter types to activate (default
+	 * {@code "console"}). Each enabled backend also needs its own
+	 * {@code enabled=true} flag.
+	 */
 	// Required
 	protected String types = "console";
-	
+
+	/** Nested console reporter configuration. */
 	@NestedConfigurationProperty
 	private ConsoleReporterProperties console;
+	/** Nested CSV reporter configuration. */
 	@NestedConfigurationProperty
 	private CsvReporterProperties csv;
+	/** Nested database (JDBC) reporter configuration. */
 	@NestedConfigurationProperty
 	private DatabaseReporterProperties database;
+	/** Nested Datadog reporter configuration. */
 	@NestedConfigurationProperty
 	private DatadogReporterProperties datadog;
+	/** Nested Ganglia reporter configuration. */
 	@NestedConfigurationProperty
 	private GangliaReporterProperties ganglia;
+	/** Nested Graphite reporter configuration. */
 	@NestedConfigurationProperty
 	private GraphiteReporterProperties graphite;
+	/** Nested InfluxDB reporter configuration. */
 	@NestedConfigurationProperty
 	private InfluxdbReporterProperties influxdb;
+	/** Nested JMX reporter configuration. */
 	@NestedConfigurationProperty
 	private JmxReporterProperties jmx;
+	/** Nested Kafka reporter configuration. */
 	@NestedConfigurationProperty
 	private KafkaReporterProperties kafka;
+	/** Nested Librato reporter configuration. */
 	@NestedConfigurationProperty
 	private LibratoReporterProperties librato;
+	/** Nested New Relic reporter configuration. */
 	@NestedConfigurationProperty
 	private NewRelicReporterProperties newrelic;
+	/** Nested RocketMQ reporter configuration. */
 	@NestedConfigurationProperty
 	private RocketmqReporterProperties rocketmq;
+	/** Nested SLF4J reporter configuration. */
 	@NestedConfigurationProperty
 	private Slf4jReporterProperties slf4j;
+	/** Nested Zabbix reporter configuration. */
 	@NestedConfigurationProperty
 	private ZabbixReporterProperties zabbix;
 

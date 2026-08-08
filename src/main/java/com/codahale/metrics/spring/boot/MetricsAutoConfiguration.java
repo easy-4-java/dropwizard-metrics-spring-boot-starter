@@ -34,13 +34,30 @@ import com.codahale.metrics.MetricSet;
 import com.codahale.metrics.health.HealthCheckRegistry;
 import com.codahale.metrics.spring.boot.ext.MetricsFactory;
 
+/**
+ * Spring Boot auto-configuration for the core Dropwizard Metrics objects.
+ * <p>
+ * Activates only when the {@link MetricRegistry} class is on the classpath. It
+ * creates the {@link MetricRegistry} (registering any metric sets declared in
+ * {@link MetricsProperties#getMetrics()}), the {@link HealthCheckRegistry} and
+ * the {@link MetricsFactory} used by the annotation-driven aspects.</p>
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Configuration
 @ConditionalOnClass(MetricRegistry.class)
 @EnableConfigurationProperties(MetricsProperties.class)
 public class MetricsAutoConfiguration implements DisposableBean {
 
-	//private Logger logger = LoggerFactory.getLogger(MetricsAutoConfiguration.class);
-
+	/**
+	 * Creates the {@link MetricRegistry} and registers every metric set declared
+	 * in {@link MetricsProperties#getMetrics()} (name &rarr; {@link MetricSet}
+	 * class name). Entries whose class cannot be loaded are skipped.
+	 *
+	 * @param properties the bound metrics properties
+	 * @return the populated metric registry
+	 */
 	@Bean
 	@ConditionalOnMissingBean
 	public MetricRegistry metricRegistry(MetricsProperties properties) {
@@ -71,12 +88,23 @@ public class MetricsAutoConfiguration implements DisposableBean {
 		return metricRegistry;
 	}
 	
+	/**
+	 * @param properties the bound metrics properties
+	 * @return a new {@link HealthCheckRegistry}.
+	 */
 	@Bean
 	@ConditionalOnMissingBean
 	public HealthCheckRegistry healthCheckRegistry(MetricsProperties properties) {
 		return new HealthCheckRegistry();
 	}
-	
+
+	/**
+	 * Creates the {@link MetricsFactory} used by the annotation-driven metrics
+	 * aspects, binding it to the given registry when one is available.
+	 *
+	 * @param metricRegistry the metric registry to bind (may be {@code null})
+	 * @return the configured {@link MetricsFactory}
+	 */
 	@Bean
 	@ConditionalOnMissingBean
 	public MetricsFactory metricsFactory(MetricRegistry metricRegistry) {
@@ -86,11 +114,16 @@ public class MetricsAutoConfiguration implements DisposableBean {
 		}
 		return metricsFactory;
 	}
-	
-	
+
+
+	/**
+	 * Lifecycle hook invoked by Spring on container shutdown; currently a no-op.
+	 *
+	 * @throws Exception never thrown by the current implementation
+	 */
 	@Override
 	public void destroy() throws Exception {
-		 
+
 
 	}
 
