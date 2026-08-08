@@ -42,18 +42,42 @@ import com.codahale.metrics.spring.boot.property.JmxReporterProperties;
 import com.codahale.metrics.spring.boot.property.Slf4jReporterProperties;
 import com.codahale.metrics.spring.boot.utils.SystemClock;
 
+/**
+ * Spring Boot auto-configuration for Dropwizard Metrics reporters.
+ * <p>
+ * Activates only when both {@link MetricRegistry} and
+ * {@link ScheduledReporter} are on the classpath, after
+ * {@link MetricsAutoConfiguration}. It exposes the shared {@link Clock} and
+ * lazily creates the enabled reporter factory beans (console, SLF4J, JMX,
+ * database) according to the bound {@link MetricsReportProperties}.</p>
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Configuration
 @ConditionalOnClass({ MetricRegistry.class, ScheduledReporter.class })
 @EnableConfigurationProperties(MetricsReportProperties.class)
 @AutoConfigureAfter(MetricsAutoConfiguration.class)
 public class MetricsReportAutoConfiguration implements DisposableBean {
 
+	/**
+	 * @return the shared {@link Clock} ({@link SystemClock}) used by all reporters.
+	 */
 	@Bean
 	@ConditionalOnMissingBean
 	public Clock clock() {
 		return SystemClock.instance();
 	}
-	
+
+	/**
+	 * Creates the console reporter factory bean when
+	 * {@code dropwizard.metrics.console.enabled=true}.
+	 *
+	 * @param properties     bound reporter properties
+	 * @param clock          the shared clock
+	 * @param metricRegistry the metric registry to report
+	 * @return a configured {@link ConsoleReporterFactoryBean}
+	 */
 	@Bean
 	@ConditionalOnProperty(prefix = ConsoleReporterProperties.PREFIX, value = "enabled", havingValue = "true")
 	public ConsoleReporterFactoryBean consoleReporterFactoryBean(MetricsReportProperties properties, Clock clock,
@@ -64,6 +88,15 @@ public class MetricsReportAutoConfiguration implements DisposableBean {
 		return factoryBean;
 	}
 
+	/**
+	 * Creates the SLF4J reporter factory bean when
+	 * {@code dropwizard.metrics.slf4j.enabled=true}.
+	 *
+	 * @param properties     bound reporter properties
+	 * @param clock          the shared clock
+	 * @param metricRegistry the metric registry to report
+	 * @return a configured {@link Slf4jReporterFactoryBean}
+	 */
 	@Bean
 	@ConditionalOnProperty(prefix = Slf4jReporterProperties.PREFIX, value = "enabled", havingValue = "true")
 	public Slf4jReporterFactoryBean slf4jReporterFactoryBean(MetricsReportProperties properties, Clock clock,
@@ -77,6 +110,16 @@ public class MetricsReportAutoConfiguration implements DisposableBean {
 
 	}
 
+	/**
+	 * Creates the JMX reporter factory bean when
+	 * {@code dropwizard.metrics.jmx.enabled=true}.
+	 *
+	 * @param properties     bound reporter properties
+	 * @param clock          the shared clock
+	 * @param metricRegistry the metric registry to report
+	 * @param mBeanServer    optional {@link MBeanServer} to publish to
+	 * @return a configured {@link JmxReporterFactoryBean}
+	 */
 	@Bean
 	@ConditionalOnProperty(prefix = JmxReporterProperties.PREFIX, value = "enabled", havingValue = "true")
 	public JmxReporterFactoryBean jmxReporterFactoryBean(MetricsReportProperties properties, Clock clock,
@@ -90,6 +133,17 @@ public class MetricsReportAutoConfiguration implements DisposableBean {
 		return factoryBean;
 	}
 
+	/**
+	 * Creates the database reporter factory bean when
+	 * {@code dropwizard.metrics.database.enabled=true} and a
+	 * {@link DataSource} bean is present.
+	 *
+	 * @param properties     bound reporter properties
+	 * @param dataSource     the JDBC data source to write metrics to
+	 * @param clock          the shared clock
+	 * @param metricRegistry the metric registry to report
+	 * @return a configured {@link DatabaseReporterFactoryBean}
+	 */
 	@Bean
 	@ConditionalOnProperty(prefix = DatabaseReporterProperties.PREFIX , value = "enabled", havingValue = "true")
 	@ConditionalOnBean(DataSource.class)
@@ -103,6 +157,11 @@ public class MetricsReportAutoConfiguration implements DisposableBean {
 		return factoryBean;
 	}
 
+	/**
+	 * Lifecycle hook invoked by Spring on container shutdown; currently a no-op.
+	 *
+	 * @throws Exception never thrown by the current implementation
+	 */
 	@Override
 	public void destroy() throws Exception {
 
