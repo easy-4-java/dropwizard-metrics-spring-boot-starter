@@ -26,11 +26,20 @@ import org.springframework.context.annotation.Import;
 
 import com.codahale.metrics.spring.boot.factory.support.MetricsEventListenerRegistrar;
 
+/**
+ * Enables Spring-event-driven metrics: importing
+ * {@link com.codahale.metrics.spring.boot.factory.support.MetricsEventListenerRegistrar}
+ * registers an application-event listener that records meter/timer events
+ * published by application code.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
 @Import({ MetricsEventListenerRegistrar.class })
 public @interface EnableEventMetrics {
-	
+
 }
