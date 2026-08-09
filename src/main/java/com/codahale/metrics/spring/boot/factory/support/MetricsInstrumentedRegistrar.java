@@ -32,9 +32,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.support.ServletContextAttributeExporter;
 
 import com.codahale.metrics.MetricRegistry;
-import com.codahale.metrics.servlet.InstrumentedFilter;
-import com.codahale.metrics.servlets.HealthCheckServlet;
-import com.codahale.metrics.servlets.MetricsServlet;
+import com.codahale.metrics.spring.boot.ext.servlet.InstrumentedFilter;
+import io.dropwizard.metrics.servlets.HealthCheckServlet;
+import io.dropwizard.metrics.servlets.MetricsServlet;
 import com.codahale.metrics.spring.boot.EnableInstrumentedMetrics;
 import com.codahale.metrics.spring.boot.ext.listener.HttpServletContextAttributeMetricsListener;
 import com.codahale.metrics.spring.boot.ext.listener.HttpServletRequestAttributeMetricsListener;

@@ -23,8 +23,8 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.health.HealthCheckRegistry;
-import com.codahale.metrics.servlets.MetricsServlet;
-import com.codahale.metrics.servlets.HealthCheckServlet;
+import io.dropwizard.metrics.servlets.MetricsServlet;
+import io.dropwizard.metrics.servlets.HealthCheckServlet;
 
 public class MetricsServletsContextListener implements ServletContextListener {
 

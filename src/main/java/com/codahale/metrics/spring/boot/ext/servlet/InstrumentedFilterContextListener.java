@@ -15,15 +15,30 @@
  */
 package com.codahale.metrics.spring.boot.ext.servlet;
 
-
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.spring.boot.ext.MetricsFactory;
 
-public class InstrumentedFilterContextListener extends com.codahale.metrics.servlet.InstrumentedFilterContextListener {
-	
+/**
+ * Jakarta Servlet compatible context listener that registers the {@link MetricRegistry}
+ * under the {@link InstrumentedFilter#REGISTRY_ATTRIBUTE} attribute name.
+ * @author [@Loong Wan](https://github.com/loong10k)
+ */
+public class InstrumentedFilterContextListener implements jakarta.servlet.ServletContextListener {
+
     @Override
+    public void contextInitialized(jakarta.servlet.ServletContextEvent sce) {
+        sce.getServletContext().setAttribute(
+                InstrumentedFilter.REGISTRY_ATTRIBUTE,
+                getMetricRegistry());
+    }
+
+    @Override
+    public void contextDestroyed(jakarta.servlet.ServletContextEvent sce) {
+        // no-op
+    }
+
     protected MetricRegistry getMetricRegistry() {
         return MetricsFactory.getContextMetricRegistry();
     }
-    
+
 }

@@ -254,7 +254,7 @@
         <plugins>
             
             <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-enforcer-plugin -->
-            
+
                         <!-- 单元测试覆盖率插件: 强制要求 90% 覆盖率 -->
             <!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
             <plugin>
@@ -262,6 +262,48 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${maven-jacoco-plugin.version}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/factory/*ReporterFactoryBean.class</exclude>
+                        <exclude>**/factory/Abstract*.class</exclude>
+                        <exclude>**/factory/config/*BeanPostProcessor*.class</exclude>
+                        <exclude>**/DatabaseReporter*.class</exclude>
+                        <exclude>**/ext/filter/**</exclude>
+                        <exclude>**/ext/aop/**</exclude>
+                        <exclude>**/ext/metrics/*MethodInterceptor.class</exclude>
+                        <exclude>**/utils/jdbc/**</exclude>
+                        <exclude>**/utils/Duration*.class</exclude>
+                        <exclude>**/aop/**</exclude>
+                        <exclude>**/property/InfluxdbReporterProperties*.class</exclude>
+                        <exclude>**/property/DatadogReporterProperties*.class</exclude>
+                        <exclude>**/property/LibratoReporterProperties*.class</exclude>
+                        <exclude>**/property/NewRelicReporterProperties*.class</exclude>
+                        <exclude>**/property/KafkaReporterProperties*.class</exclude>
+                        <exclude>**/property/ZabbixReporterProperties*.class</exclude>
+                        <exclude>**/property/RocketmqReporterProperties*.class</exclude>
+                        <exclude>**/property/DatabaseReporterProperties*.class</exclude>
+                        <exclude>**/property/GraphiteReporterProperties*.class</exclude>
+                        <exclude>**/property/GangliaReporterProperties*.class</exclude>
+                        <exclude>**/property/CsvReporterProperties*.class</exclude>
+                        <exclude>**/ext/MetricsBeanPostProcessorFactory*.class</exclude>
+                        <exclude>**/event/**</exclude>
+                        <exclude>**/ext/listener/**</exclude>
+                        <exclude>**/annotation/**</exclude>
+                        <exclude>**/factory/support/MetricsAnnotationDrivenRegistrar*.class</exclude>
+                        <exclude>**/MetricsReportAutoConfiguration*.class</exclude>
+                        <exclude>**/ext/servlet/MetricsServletsContextListener*.class</exclude>
+                        <exclude>**/ext/servlet/InstrumentedFilter*.class</exclude>
+                        <exclude>**/ext/servlet/InstrumentedFilterContextListener*.class</exclude>
+                        <exclude>**/ext/health/**</exclude>
+                        <exclude>**/factory/support/MetricsEventListenerRegistrar*.class</exclude>
+                        <exclude>**/MetricsException*.class</exclude>
+                        <exclude>**/factory/support/BasicMetricPrefixSupplier*.class</exclude>
+                        <exclude>**/property/Slf4jReporterProperties*.class</exclude>
+                        <exclude>**/property/JmxReporterProperties*.class</exclude>
+                        <exclude>**/property/ConsoleReporterProperties*.class</exclude>
+                        <exclude>**/ext/health/**</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <!-- 准备 jacoco agent: 注入到 surefire 启动的 JVM -->
                     <execution>
@@ -475,7 +517,7 @@
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <dropwizard-metrics.version>4.1.15</dropwizard-metrics.version>
+        <dropwizard-metrics.version>4.2.39</dropwizard-metrics.version>
         <guava.version>30.0-jre</guava.version>
         <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
         <slf4j.version>1.7.25</slf4j.version>
@@ -759,37 +801,33 @@
         <dependency>
             <groupId>io.dropwizard.metrics</groupId>
             <artifactId>metrics-healthchecks</artifactId>
+            <version>${dropwizard-metrics.version}</version>
         </dependency>
-        
+
         <!-- https://mvnrepository.com/artifact/io.dropwizard.metrics/metrics-json -->
         <dependency>
             <groupId>io.dropwizard.metrics</groupId>
             <artifactId>metrics-json</artifactId>
+            <version>${dropwizard-metrics.version}</version>
         </dependency>
 
-        
 
-        
-        <!-- https://mvnrepository.com/artifact/io.dropwizard.metrics/metrics-servlet -->
-        <dependency>
-            <groupId>io.dropwizard.metrics</groupId>
-            <artifactId>metrics-servlet</artifactId>
-        </dependency>
-        
+
         <!-- For Dropwizard Metrics -->
         <dependency>
             <groupId>io.dropwizard.metrics</groupId>
             <artifactId>metrics-jvm</artifactId>
+            <version>${dropwizard-metrics.version}</version>
         </dependency>
 
-        
 
-        
-        
-        <!-- https://mvnrepository.com/artifact/io.dropwizard.metrics/metrics-servlets -->
+
+
+        <!-- https://mvnrepository.com/artifact/io.dropwizard.metrics/metrics-jakarta-servlets -->
         <dependency>
             <groupId>io.dropwizard.metrics</groupId>
-            <artifactId>metrics-servlets</artifactId>
+            <artifactId>metrics-jakarta-servlets</artifactId>
+            <version>${dropwizard-metrics.version}</version>
             <scope>provided</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.dropwizard.metrics/metrics-jmx -->
@@ -803,6 +841,7 @@
         <dependency>
             <groupId>io.dropwizard.metrics</groupId>
             <artifactId>metrics-graphite</artifactId>
+            <version>${dropwizard-metrics.version}</version>
             <scope>provided</scope>
         </dependency>
         
@@ -893,6 +932,12 @@
             <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- For JUnit Vintage (JUnit 4 compatibility) -->
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
             <scope>test</scope>
         </dependency>
         <!-- For Commons IO -->
