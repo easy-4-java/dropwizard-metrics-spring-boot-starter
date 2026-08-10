@@ -41,7 +41,7 @@ import com.codahale.metrics.spring.boot.property.ZabbixReporterProperties;
  * database, Datadog, Ganglia, Graphite, InfluxDB, JMX, Kafka, Librato,
  * New Relic, RocketMQ, SLF4J and Zabbix).</p>
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @ConfigurationProperties(prefix = MetricsReportProperties.PREFIX)
