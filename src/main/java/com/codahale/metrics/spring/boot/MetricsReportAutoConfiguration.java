@@ -51,7 +51,7 @@ import com.codahale.metrics.spring.boot.utils.SystemClock;
  * lazily creates the enabled reporter factory beans (console, SLF4J, JMX,
  * database) according to the bound {@link MetricsReportProperties}.</p>
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @Configuration

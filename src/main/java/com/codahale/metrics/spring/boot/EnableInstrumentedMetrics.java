@@ -33,7 +33,7 @@ import com.codahale.metrics.spring.boot.factory.support.MetricsServletRegistrar;
  * {@link com.codahale.metrics.MetricRegistry} and
  * {@link com.codahale.metrics.health.HealthCheckRegistry} contents.
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @Target({ ElementType.TYPE })
