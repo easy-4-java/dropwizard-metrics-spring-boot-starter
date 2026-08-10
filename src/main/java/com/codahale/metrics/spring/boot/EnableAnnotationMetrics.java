@@ -32,7 +32,7 @@ import com.codahale.metrics.spring.boot.factory.support.MetricsAnnotationDrivenR
  * activates the {@code @Metered}, {@code @Timed}, {@code @ExceptionMetered}
  * and {@code @Counted} pointcut advisors.
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @Target({ ElementType.TYPE })
