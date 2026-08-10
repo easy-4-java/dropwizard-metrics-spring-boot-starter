@@ -42,7 +42,7 @@ import com.codahale.metrics.spring.boot.ext.MetricsFactory;
  * {@link MetricsProperties#getMetrics()}), the {@link HealthCheckRegistry} and
  * the {@link MetricsFactory} used by the annotation-driven aspects.</p>
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @Configuration
