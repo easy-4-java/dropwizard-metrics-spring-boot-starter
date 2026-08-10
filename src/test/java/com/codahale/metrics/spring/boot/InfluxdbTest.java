@@ -29,7 +29,7 @@ import org.junit.Test;
  * 
  * @className	： InfluxdbTest
  * @description	：https://github.com/influxdata/influxdb-java
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @date		： 2017年9月12日 下午11:33:12
  * @version 	V1.0
  */

@@ -40,7 +40,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  *       {@code jvm.gc=com.codahale.metrics.jvm.GarbageCollectorMetricSet}</li>
  * </ul>
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @ConfigurationProperties(prefix = MetricsProperties.PREFIX)
