@@ -32,7 +32,7 @@ import com.codahale.metrics.spring.boot.factory.support.MetricsEventListenerRegi
  * registers an application-event listener that records meter/timer events
  * published by application code.
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @Target({ ElementType.TYPE })

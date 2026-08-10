@@ -44,7 +44,7 @@ import com.codahale.metrics.health.HealthCheckRegistry;
  * return the same instance, and exposes static helpers for obtaining named
  * {@link SharedMetricRegistries shared registries} partitioned by metric type.</p>
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @SuppressWarnings({"unchecked","rawtypes"})
