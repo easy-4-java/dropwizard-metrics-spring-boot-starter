@@ -13,7 +13,7 @@ import org.springframework.web.context.support.ServletContextAttributeExporter;
 
 /**
  * Tests for {@link MetricsInstrumentedRegistrar} and {@link MetricsServletRegistrar}.
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 class MetricsRegistrarTest {
 

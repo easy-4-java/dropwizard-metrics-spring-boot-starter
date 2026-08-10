@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * Tests for {@link InstrumentedFilter} and {@link InstrumentedFilterContextListener}.
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 class InstrumentedFilterTest {
 

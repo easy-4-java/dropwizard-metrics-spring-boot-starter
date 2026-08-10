@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Tests for {@link MetricsReportProperties} and nested reporter properties.
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 class MetricsReportPropertiesTest {
 

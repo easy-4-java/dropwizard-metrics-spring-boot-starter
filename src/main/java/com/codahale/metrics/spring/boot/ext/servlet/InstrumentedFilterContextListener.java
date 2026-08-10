@@ -21,7 +21,7 @@ import com.codahale.metrics.spring.boot.ext.MetricsFactory;
 /**
  * Jakarta Servlet compatible context listener that registers the {@link MetricRegistry}
  * under the {@link InstrumentedFilter#REGISTRY_ATTRIBUTE} attribute name.
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public class InstrumentedFilterContextListener implements jakarta.servlet.ServletContextListener {
 
