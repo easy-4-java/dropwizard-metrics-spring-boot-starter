@@ -22,15 +22,24 @@ import com.codahale.metrics.spring.boot.event.HistogramEvent;
 import com.codahale.metrics.spring.boot.event.MetricEventPoint;
 import com.codahale.metrics.spring.boot.ext.MetricsFactory;
 
+/**
+ * <p>Auto-configuration for HistogramEventListener.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class HistogramEventListener extends MetricEventListener<HistogramEvent> {
 
 	protected MetricRegistry metricRegistry;
 	
+	/** @return return the metric registry. */
 	public MetricRegistry getMetricRegistry() {
 		return metricRegistry;
 	}
 	
 	@Override
+	/**
+	 * <p>After properties set.</p>
+	 */
 	public void afterPropertiesSet() throws Exception {
 		if(getMetricsFactory() != null){
 			metricRegistry = getMetricsFactory().getRegistry();
@@ -41,6 +50,10 @@ public class HistogramEventListener extends MetricEventListener<HistogramEvent> 
 	
 	@Async
 	@Override
+	/**
+	 * <p>On application event.</p>
+	 * @param event
+	 */
 	public void onApplicationEvent(HistogramEvent event) {
 		
 		//获取绑定数据对象

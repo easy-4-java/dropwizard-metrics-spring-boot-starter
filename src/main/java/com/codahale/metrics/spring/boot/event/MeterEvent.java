@@ -6,6 +6,11 @@ import java.util.Map;
  * 业务运行状态事件对象
  */
 @SuppressWarnings("serial")
+/**
+ * <p>Auto-configuration for MeterEvent.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class MeterEvent extends MetricEvent<MetricEventPoint> {
 
 	public MeterEvent(Object source, MetricEventPoint bind) {

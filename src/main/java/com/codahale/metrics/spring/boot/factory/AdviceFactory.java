@@ -17,6 +17,11 @@ package com.codahale.metrics.spring.boot.factory;
 
 import org.aopalliance.aop.Advice;
 
+/**
+ * <p>Auto-configuration for AdviceFactory.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public interface AdviceFactory {
 
 	Advice getAdvice(Object bean, Class<?> targetClass);

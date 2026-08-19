@@ -23,6 +23,11 @@ import org.springframework.util.StringUtils;
 import com.codahale.metrics.ConsoleReporter;
 import com.codahale.metrics.spring.boot.property.ConsoleReporterProperties;
 
+/**
+ * <p>Auto-configuration for ConsoleReporterFactoryBean.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class ConsoleReporterFactoryBean extends AbstractScheduledReporterFactoryBean<ConsoleReporter,ConsoleReporterProperties> {
 
 	public ConsoleReporterFactoryBean(ConsoleReporterProperties properties) {
@@ -30,11 +35,17 @@ public class ConsoleReporterFactoryBean extends AbstractScheduledReporterFactory
 	}
 
 	@Override
+	/** @return return the object type. */
 	public Class<ConsoleReporter> getObjectType() {
 		return ConsoleReporter.class;
 	}
 
 	@Override
+	/**
+	 * <p>Create instance.</p>
+	 * @param properties
+	 * @return the result
+	 */
 	protected ConsoleReporter createInstance(ConsoleReporterProperties properties) {
 		
 		final ConsoleReporter.Builder reporter = ConsoleReporter.forRegistry(getMetricRegistry())

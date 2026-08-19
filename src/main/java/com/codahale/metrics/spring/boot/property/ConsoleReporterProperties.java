@@ -19,10 +19,20 @@ import java.io.PrintStream;
 
 import com.codahale.metrics.spring.boot.MetricsReportProperties;
 
+/**
+ * <p>Auto-configuration for ConsoleReporterProperties.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class ConsoleReporterProperties extends ReporterProperties {
 
 	public static final String PREFIX = MetricsReportProperties.PREFIX + ".console";
 	
+	/**
+	 * <p>Auto-configuration for ConsoleStream.</p>
+	 * @author <a href="https://github.com/loong10k">Loong Wan</a>
+	 * @since 1.0.0
+	 */
 	public enum ConsoleStream {
 		STDOUT(System.out), STDERR(System.err);
 
@@ -32,6 +42,10 @@ public class ConsoleReporterProperties extends ReporterProperties {
 			this.printStream = printStream;
 		}
 
+		/**
+		 * <p>Get.</p>
+		 * @return the result
+		 */
 		public PrintStream get() {
 			return printStream;
 		}
@@ -41,18 +55,22 @@ public class ConsoleReporterProperties extends ReporterProperties {
 
 	private ConsoleStream output = ConsoleStream.STDOUT;
 
+	/** @return return the time zone. */
 	public String getTimeZone() {
 		return timeZone;
 	}
 
+	/** @param timeZone set the time zone. */
 	public void setTimeZone(String timeZone) {
 		this.timeZone = timeZone;
 	}
 
+	/** @return return the output. */
 	public ConsoleStream getOutput() {
 		return output;
 	}
 
+	/** @param stream set the output. */
 	public void setOutput(ConsoleStream stream) {
 		this.output = stream;
 	}

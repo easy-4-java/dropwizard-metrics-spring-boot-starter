@@ -17,6 +17,11 @@ package com.codahale.metrics.spring.boot.property;
 
 import com.codahale.metrics.spring.boot.MetricsReportProperties;
 
+/**
+ * <p>Auto-configuration for CsvReporterProperties.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class CsvReporterProperties extends ReporterProperties {
 
 	public static final String PREFIX = MetricsReportProperties.PREFIX + ".csv";
@@ -24,10 +29,12 @@ public class CsvReporterProperties extends ReporterProperties {
 	// Optional
 	private String directory;
 
+	/** @return return the directory. */
 	public String getDirectory() {
 		return directory;
 	}
 
+	/** @param directory set the directory. */
 	public void setDirectory(String directory) {
 		this.directory = directory;
 	}

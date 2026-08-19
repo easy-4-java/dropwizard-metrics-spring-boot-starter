@@ -31,14 +31,29 @@ import static org.springframework.aop.support.AopUtils.getTargetClass;
 import static org.springframework.util.ReflectionUtils.doWithFields;
 import static org.springframework.util.ReflectionUtils.doWithMethods;
 
+/**
+ * <p>Auto-configuration for AbstractAnnotationBeanPostProcessor.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 abstract class AbstractAnnotationBeanPostProcessor implements BeanPostProcessor {
 
 	protected final Logger LOG = LoggerFactory.getLogger(getClass());
 
+	/**
+	 * <p>Auto-configuration for Members.</p>
+	 * @author <a href="https://github.com/loong10k">Loong Wan</a>
+	 * @since 1.0.0
+	 */
 	public static enum Members {
 		FIELDS, METHODS, ALL
 	}
 
+	/**
+	 * <p>Auto-configuration for Phase.</p>
+	 * @author <a href="https://github.com/loong10k">Loong Wan</a>
+	 * @since 1.0.0
+	 */
 	public static enum Phase {
 		PRE_INIT, POST_INIT;
 	}
@@ -53,11 +68,31 @@ abstract class AbstractAnnotationBeanPostProcessor implements BeanPostProcessor 
 		this.filter = filter;
 	}
 
+	/**
+	 * <p>With field.</p>
+	 * @param bean
+	 * @param beanName
+	 * @param targetClass
+	 * @param field
+	 */
 	protected void withField(Object bean, String beanName, Class<?> targetClass, Field field) {}
 
+	/**
+	 * <p>With method.</p>
+	 * @param bean
+	 * @param beanName
+	 * @param targetClass
+	 * @param method
+	 */
 	protected void withMethod(Object bean, String beanName, Class<?> targetClass, Method method) {}
 
 	@Override
+	/**
+	 * <p>Post process before initialization.</p>
+	 * @param bean
+	 * @param beanName
+	 * @return the result
+	 */
 	public final Object postProcessBeforeInitialization(Object bean, String beanName) {
 		if (phase == Phase.PRE_INIT) {
 			process(bean, beanName);
@@ -67,6 +102,12 @@ abstract class AbstractAnnotationBeanPostProcessor implements BeanPostProcessor 
 	}
 
 	@Override
+	/**
+	 * <p>Post process after initialization.</p>
+	 * @param bean
+	 * @param beanName
+	 * @return the result
+	 */
 	public final Object postProcessAfterInitialization(Object bean, String beanName) {
 		if (phase == Phase.POST_INIT) {
 			process(bean, beanName);
@@ -75,12 +116,21 @@ abstract class AbstractAnnotationBeanPostProcessor implements BeanPostProcessor 
 		return bean;
 	}
 
+	/**
+	 * <p>Process.</p>
+	 * @param bean
+	 * @param beanName
+	 */
 	private void process(final Object bean, final String beanName) {
 		final Class<?> targetClass = getTargetClass(bean);
 
 		if (members == Members.FIELDS || members == Members.ALL) {
 			doWithFields(targetClass, new FieldCallback() {
 				@Override
+				/**
+				 * <p>Do with.</p>
+				 * @param field
+				 */
 				public void doWith(Field field) throws IllegalAccessException {
 					withField(bean, beanName, targetClass, field);
 				}
@@ -90,6 +140,10 @@ abstract class AbstractAnnotationBeanPostProcessor implements BeanPostProcessor 
 		if (members == Members.METHODS || members == Members.ALL) {
 			doWithMethods(targetClass, new MethodCallback() {
 				@Override
+				/**
+				 * <p>Do with.</p>
+				 * @param method
+				 */
 				public void doWith(final Method method) throws IllegalAccessException {
 					withMethod(bean, beanName, targetClass, method);
 				}

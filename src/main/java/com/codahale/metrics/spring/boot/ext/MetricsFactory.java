@@ -48,6 +48,11 @@ import com.codahale.metrics.health.HealthCheckRegistry;
  * @since 1.0.0
  */
 @SuppressWarnings({"unchecked","rawtypes"})
+/**
+ * <p>Auto-configuration for MetricsFactory.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class MetricsFactory {
 
 	/** Servlet-context attribute name under which the metric registry is published. */

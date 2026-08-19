@@ -15,6 +15,11 @@
  */
 package com.codahale.metrics.spring.boot.factory.support;
 
+/**
+ * <p>Auto-configuration for BasicMetricPrefixSupplier.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class BasicMetricPrefixSupplier implements MetricPrefixSupplier {
 
 	private final String prefix;
@@ -24,6 +29,7 @@ public class BasicMetricPrefixSupplier implements MetricPrefixSupplier {
 	}
 
 	@Override
+	/** @return return the prefix. */
 	public String getPrefix() {
 		return prefix;
 	}

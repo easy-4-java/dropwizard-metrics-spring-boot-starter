@@ -23,6 +23,11 @@ import org.springframework.util.StringUtils;
 import com.codahale.metrics.spring.boot.ext.reporter.DatabaseReporter;
 import com.codahale.metrics.spring.boot.property.DatabaseReporterProperties;
 
+/**
+ * <p>Auto-configuration for DatabaseReporterFactoryBean.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class DatabaseReporterFactoryBean extends AbstractScheduledReporterFactoryBean<DatabaseReporter,DatabaseReporterProperties> {
 
 	private final DataSource dataSource;
@@ -34,11 +39,17 @@ public class DatabaseReporterFactoryBean extends AbstractScheduledReporterFactor
  
 
 	@Override
+	/** @return return the object type. */
 	public Class<DatabaseReporter> getObjectType() {
 		return DatabaseReporter.class;
 	}
 
 	@Override
+	/**
+	 * <p>Create instance.</p>
+	 * @param properties
+	 * @return the result
+	 */
 	protected DatabaseReporter createInstance(DatabaseReporterProperties properties) {
 		
 		final DatabaseReporter.Builder reporter = DatabaseReporter.forRegistry(getMetricRegistry())

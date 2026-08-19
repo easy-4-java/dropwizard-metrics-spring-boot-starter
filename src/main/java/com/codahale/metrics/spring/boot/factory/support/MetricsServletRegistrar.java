@@ -30,12 +30,22 @@ import com.codahale.metrics.spring.boot.EnableInstrumentedMetrics;
 
 @Configuration
 @ConditionalOnClass({ EnableInstrumentedMetrics.class })
+/**
+ * <p>Auto-configuration for MetricsServletRegistrar.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class MetricsServletRegistrar {
 
 	/*
 	 *  通过该方式将metricRegistry注入到对应的属性值中以便各个组件使用
 	 */
 	@Bean("servletsAttributeExporter")
+	/**
+	 * <p>Servlets attribute exporter.</p>
+	 * @param registry
+	 * @return the result
+	 */
 	public ServletContextAttributeExporter servletsAttributeExporter(MetricRegistry registry) {
 		
 		ServletContextAttributeExporter attributeExporter = new ServletContextAttributeExporter();

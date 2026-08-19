@@ -18,6 +18,11 @@ package com.codahale.metrics.spring.boot.event;
 import org.springframework.context.ApplicationEvent;
 
 @SuppressWarnings("serial")
+/**
+ * <p>Auto-configuration for MetricEvent.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class MetricEvent<T> extends ApplicationEvent {
 
 	/**
@@ -30,6 +35,7 @@ public class MetricEvent<T> extends ApplicationEvent {
 		this.bind = bind;
 	}
 
+	/** @return return the bind. */
 	public T getBind() {
 		return bind;
 	}

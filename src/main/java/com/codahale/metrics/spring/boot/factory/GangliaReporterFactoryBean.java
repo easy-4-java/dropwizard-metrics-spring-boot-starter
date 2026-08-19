@@ -24,6 +24,11 @@ import com.codahale.metrics.spring.boot.property.GangliaReporterProperties;
 
 import info.ganglia.gmetric4j.gmetric.GMetric;
 
+/**
+ * <p>Auto-configuration for GangliaReporterFactoryBean.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class GangliaReporterFactoryBean extends AbstractScheduledReporterFactoryBean<GangliaReporter, GangliaReporterProperties> {
 
 	public GangliaReporterFactoryBean(GangliaReporterProperties properties) {
@@ -31,11 +36,17 @@ public class GangliaReporterFactoryBean extends AbstractScheduledReporterFactory
 	}
 
 	@Override
+	/** @return return the object type. */
 	public Class<GangliaReporter> getObjectType() {
 		return GangliaReporter.class;
 	}
 
 	@Override
+	/**
+	 * <p>Create instance.</p>
+	 * @param properties
+	 * @return the result
+	 */
 	protected GangliaReporter createInstance(GangliaReporterProperties properties) throws Exception {
 		
 		final GangliaReporter.Builder reporter = GangliaReporter.forRegistry(getMetricRegistry())

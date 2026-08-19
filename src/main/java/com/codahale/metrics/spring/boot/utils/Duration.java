@@ -27,6 +27,11 @@ import java.util.regex.Pattern;
 import static com.google.common.base.Preconditions.checkArgument;
 import static java.util.Objects.requireNonNull;
 
+/**
+ * <p>Auto-configuration for Duration.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class Duration implements Comparable<Duration> {
     private static final Pattern DURATION_PATTERN = Pattern.compile("(\\d+)\\s*(\\S+)");
 
@@ -54,34 +59,74 @@ public class Duration implements Comparable<Duration> {
             .put("days", TimeUnit.DAYS)
             .build();
 
+    /**
+     * <p>Nanoseconds.</p>
+     * @param count
+     * @return the result
+     */
     public static Duration nanoseconds(long count) {
         return new Duration(count, TimeUnit.NANOSECONDS);
     }
 
+    /**
+     * <p>Microseconds.</p>
+     * @param count
+     * @return the result
+     */
     public static Duration microseconds(long count) {
         return new Duration(count, TimeUnit.MICROSECONDS);
     }
 
+    /**
+     * <p>Milliseconds.</p>
+     * @param count
+     * @return the result
+     */
     public static Duration milliseconds(long count) {
         return new Duration(count, TimeUnit.MILLISECONDS);
     }
 
+    /**
+     * <p>Seconds.</p>
+     * @param count
+     * @return the result
+     */
     public static Duration seconds(long count) {
         return new Duration(count, TimeUnit.SECONDS);
     }
 
+    /**
+     * <p>Minutes.</p>
+     * @param count
+     * @return the result
+     */
     public static Duration minutes(long count) {
         return new Duration(count, TimeUnit.MINUTES);
     }
 
+    /**
+     * <p>Hours.</p>
+     * @param count
+     * @return the result
+     */
     public static Duration hours(long count) {
         return new Duration(count, TimeUnit.HOURS);
     }
 
+    /**
+     * <p>Days.</p>
+     * @param count
+     * @return the result
+     */
     public static Duration days(long count) {
         return new Duration(count, TimeUnit.DAYS);
     }
 
+    /**
+     * <p>Parse.</p>
+     * @param duration
+     * @return the result
+     */
     public static Duration parse(String duration) {
         final Matcher matcher = DURATION_PATTERN.matcher(duration);
         checkArgument(matcher.matches(), "Invalid duration: " + duration);
@@ -103,43 +148,78 @@ public class Duration implements Comparable<Duration> {
         this.unit = requireNonNull(unit);
     }
 
+    /** @return return the quantity. */
     public long getQuantity() {
         return count;
     }
 
+    /** @return return the unit. */
     public TimeUnit getUnit() {
         return unit;
     }
 
+    /**
+     * <p>To nanoseconds.</p>
+     * @return the result
+     */
     public long toNanoseconds() {
         return TimeUnit.NANOSECONDS.convert(count, unit);
     }
 
+    /**
+     * <p>To microseconds.</p>
+     * @return the result
+     */
     public long toMicroseconds() {
         return TimeUnit.MICROSECONDS.convert(count, unit);
     }
 
+    /**
+     * <p>To milliseconds.</p>
+     * @return the result
+     */
     public long toMilliseconds() {
         return TimeUnit.MILLISECONDS.convert(count, unit);
     }
 
+    /**
+     * <p>To seconds.</p>
+     * @return the result
+     */
     public long toSeconds() {
         return TimeUnit.SECONDS.convert(count, unit);
     }
 
+    /**
+     * <p>To minutes.</p>
+     * @return the result
+     */
     public long toMinutes() {
         return TimeUnit.MINUTES.convert(count, unit);
     }
 
+    /**
+     * <p>To hours.</p>
+     * @return the result
+     */
     public long toHours() {
         return TimeUnit.HOURS.convert(count, unit);
     }
 
+    /**
+     * <p>To days.</p>
+     * @return the result
+     */
     public long toDays() {
         return TimeUnit.DAYS.convert(count, unit);
     }
 
     @Override
+    /**
+     * <p>Equals.</p>
+     * @param obj
+     * @return the result
+     */
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -153,11 +233,19 @@ public class Duration implements Comparable<Duration> {
     }
 
     @Override
+    /**
+     * <p>Hash code.</p>
+     * @return the result
+     */
     public int hashCode() {
         return (31 * (int) (count ^ (count >>> 32))) + unit.hashCode();
     }
 
     @Override
+    /**
+     * <p>To string.</p>
+     * @return the result
+     */
     public String toString() {
         String units = unit.toString().toLowerCase(Locale.ENGLISH);
         if (count == 1) {
@@ -167,6 +255,11 @@ public class Duration implements Comparable<Duration> {
     }
 
     @Override
+    /**
+     * <p>Compare to.</p>
+     * @param other
+     * @return the result
+     */
     public int compareTo(Duration other) {
         if (unit == other.unit) {
             return Long.compare(count, other.count);

@@ -31,6 +31,11 @@ import com.codahale.metrics.spring.boot.ext.filter.AnnotationFilter;
 import com.codahale.metrics.spring.boot.factory.AdviceFactory;
 import com.codahale.metrics.spring.boot.utils.MetricUtils;
 
+/**
+ * <p>Auto-configuration for ExceptionMeteredMethodInterceptor.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class ExceptionMeteredMethodInterceptor extends AbstractMetricMethodInterceptor<ExceptionMetered, Meter> implements Ordered {
 
 	public static final Class<ExceptionMetered> ANNOTATION = ExceptionMetered.class;
@@ -42,6 +47,13 @@ public class ExceptionMeteredMethodInterceptor extends AbstractMetricMethodInter
 	}
 
 	@Override
+	/**
+	 * <p>Invoke.</p>
+	 * @param invocation
+	 * @param meter
+	 * @param annotation
+	 * @return the result
+	 */
 	protected Object invoke(MethodInvocation invocation, Meter meter, ExceptionMetered annotation) throws Throwable {
 		try {
 			return invocation.proceed();
@@ -55,23 +67,44 @@ public class ExceptionMeteredMethodInterceptor extends AbstractMetricMethodInter
 	}
 
 	@Override
+	/**
+	 * <p>Build metric.</p>
+	 * @param metricRegistry
+	 * @param metricName
+	 * @param annotation
+	 * @return the result
+	 */
 	protected Meter buildMetric(MetricRegistry metricRegistry, String metricName, ExceptionMetered annotation) {
 		return metricRegistry.meter(metricName);
 	}
 
 	@Override
+	/**
+	 * <p>Build metric name.</p>
+	 * @param targetClass
+	 * @param method
+	 * @param annotation
+	 * @return the result
+	 */
 	protected String buildMetricName(Class<?> targetClass, Method method, ExceptionMetered annotation) {
 		return MetricUtils.forExceptionMeteredMethod(targetClass, method, annotation);
 	}
 
 	@Override
+	/** @return return the order. */
 	public int getOrder() {
 		return HIGHEST_PRECEDENCE;
 	}
 
+	/**
+	 * <p>Advice factory.</p>
+	 * @param metricRegistry
+	 * @return the result
+	 */
 	public static AdviceFactory adviceFactory(final MetricRegistry metricRegistry) {
 		return new AdviceFactory() {
 			@Override
+			/** @return return the advice. */
 			public Advice getAdvice(Object bean, Class<?> targetClass) {
 				return new ExceptionMeteredMethodInterceptor(metricRegistry, targetClass);
 			}

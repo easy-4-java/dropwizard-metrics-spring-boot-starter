@@ -26,6 +26,11 @@ import com.codahale.metrics.health.HealthCheckRegistry;
 import io.dropwizard.metrics.servlets.MetricsServlet;
 import io.dropwizard.metrics.servlets.HealthCheckServlet;
 
+/**
+ * <p>Auto-configuration for MetricsServletsContextListener.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class MetricsServletsContextListener implements ServletContextListener {
 
 	@Autowired
@@ -38,6 +43,10 @@ public class MetricsServletsContextListener implements ServletContextListener {
 	private final HealthCheckServletContextListener healthCheckServletContextListener = new HealthCheckServletContextListener();
 
 	@Override
+	/**
+	 * <p>Context initialized.</p>
+	 * @param event
+	 */
 	public void contextInitialized(ServletContextEvent event) {
 
 		WebApplicationContextUtils.getRequiredWebApplicationContext(event.getServletContext())
@@ -47,26 +56,43 @@ public class MetricsServletsContextListener implements ServletContextListener {
 	}
 
 	@Override
+	/**
+	 * <p>Context destroyed.</p>
+	 * @param event
+	 */
 	public void contextDestroyed(ServletContextEvent event) {
 	}
 
+	/**
+	 * <p>Auto-configuration for MetricsServletContextListener.</p>
+	 * @author <a href="https://github.com/loong10k">Loong Wan</a>
+	 * @since 1.0.0
+	 */
 	class MetricsServletContextListener extends MetricsServlet.ContextListener {
 
 		@Override
+		/** @return return the metric registry. */
 		protected MetricRegistry getMetricRegistry() {
 			return metricRegistry;
 		}
 
 		@Override
+		/** @return return the allowed origin. */
 		protected String getAllowedOrigin() {
 			return "*";
 		}
 
 	}
 
+	/**
+	 * <p>Auto-configuration for HealthCheckServletContextListener.</p>
+	 * @author <a href="https://github.com/loong10k">Loong Wan</a>
+	 * @since 1.0.0
+	 */
 	class HealthCheckServletContextListener extends HealthCheckServlet.ContextListener {
 
 		@Override
+		/** @return return the health check registry. */
 		protected HealthCheckRegistry getHealthCheckRegistry() {
 			return healthCheckRegistry;
 		}

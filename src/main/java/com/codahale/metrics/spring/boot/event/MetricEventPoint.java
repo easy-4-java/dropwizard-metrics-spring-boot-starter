@@ -21,6 +21,11 @@ import java.util.UUID;
 
 import com.codahale.metrics.spring.boot.utils.SystemClock;
 
+/**
+ * <p>Auto-configuration for MetricEventPoint.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class MetricEventPoint {
 	
 	public static final MetricEventPoint ROOT = new MetricEventPoint("root" , "Event Source");
@@ -96,62 +101,81 @@ public class MetricEventPoint {
 		this.data = data == null ? new HashMap<String, Object>() : data;
 	}
 
+	/** @return return the prev. */
 	public MetricEventPoint getPrev() {
 		return prev;
 	}
 
+	/** @param prev set the prev. */
 	public void setPrev(MetricEventPoint prev) {
 		this.prev = prev;
 	}
 
+	/** @return return the uid. */
 	public String getUid() {
 		return uid;
 	}
 
+	/** @param uid set the uid. */
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
 	
+	/** @return return the name. */
 	public String getName() {
 		return name;
 	}
 
+	/** @param name set the name. */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/** @return return the timestamp. */
 	public long getTimestamp() {
 		return timestamp;
 	}
 
+	/** @param timestamp set the timestamp. */
 	public void setTimestamp(long timestamp) {
 		this.timestamp = timestamp;
 	}
 
+	/** @return return the message. */
 	public String getMessage() {
 		return message;
 	}
 
+	/** @param message set the message. */
 	public void setMessage(String message) {
 		this.message = message;
 	}
 
+	/** @return return the value. */
 	public Long getValue() {
 		return value;
 	}
 
+	/** @param value set the value. */
 	public void setValue(Long value) {
 		this.value = value;
 	}
 	
+	/** @return return the data. */
 	public Map<String, Object> getData() {
 		return data;
 	}
 
+	/** @param data set the data. */
 	public void setData(Map<String, Object> data) {
 		this.data = data;
 	}
 	
+	/**
+	 * <p>Put.</p>
+	 * @param key
+	 * @param value
+	 */
 	public void put(String key, Object value) {
 		getData().put(key, value);
 	}

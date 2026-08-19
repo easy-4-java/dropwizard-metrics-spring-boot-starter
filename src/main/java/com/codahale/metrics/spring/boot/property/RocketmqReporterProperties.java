@@ -15,6 +15,11 @@
  */
 package com.codahale.metrics.spring.boot.property;
 
+/**
+ * <p>Auto-configuration for RocketmqReporterProperties.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class RocketmqReporterProperties extends ReporterProperties  {
 
 }

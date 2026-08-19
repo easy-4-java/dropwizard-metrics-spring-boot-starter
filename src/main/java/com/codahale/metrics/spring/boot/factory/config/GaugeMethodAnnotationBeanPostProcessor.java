@@ -25,6 +25,11 @@ import com.codahale.metrics.annotation.Gauge;
 import com.codahale.metrics.spring.boot.ext.filter.AnnotationFilter;
 import com.codahale.metrics.spring.boot.utils.MetricUtils;
 
+/**
+ * <p>Auto-configuration for GaugeMethodAnnotationBeanPostProcessor.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class GaugeMethodAnnotationBeanPostProcessor extends AbstractAnnotationBeanPostProcessor implements Ordered {
 
 	private static final AnnotationFilter FILTER = new AnnotationFilter(Gauge.class, AnnotationFilter.INSTANCE_METHODS);
@@ -37,6 +42,13 @@ public class GaugeMethodAnnotationBeanPostProcessor extends AbstractAnnotationBe
 	}
 
 	@Override
+	/**
+	 * <p>With method.</p>
+	 * @param bean
+	 * @param beanName
+	 * @param targetClass
+	 * @param method
+	 */
 	protected void withMethod(final Object bean, String beanName, Class<?> targetClass, final Method method) {
 		if (method.getParameterTypes().length > 0) {
 			throw new IllegalStateException("Method " + method.getName() + " is annotated with @Gauge but requires parameters.");
@@ -47,6 +59,7 @@ public class GaugeMethodAnnotationBeanPostProcessor extends AbstractAnnotationBe
 
 		metrics.register(metricName, new com.codahale.metrics.Gauge<Object>() {
 			@Override
+			/** @return return the value. */
 			public Object getValue() {
 				return ReflectionUtils.invokeMethod(method, bean);
 			}
@@ -56,6 +69,7 @@ public class GaugeMethodAnnotationBeanPostProcessor extends AbstractAnnotationBe
 	}
 
 	@Override
+	/** @return return the order. */
 	public int getOrder() {
 		return LOWEST_PRECEDENCE;
 	}

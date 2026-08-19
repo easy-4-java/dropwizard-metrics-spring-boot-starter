@@ -23,6 +23,11 @@ import org.springframework.core.Ordered;
 import com.codahale.metrics.health.HealthCheck;
 import com.codahale.metrics.health.HealthCheckRegistry;
 
+/**
+ * <p>Auto-configuration for HealthCheckBeanPostProcessor.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class HealthCheckBeanPostProcessor implements BeanPostProcessor, Ordered {
 
 	private static final Logger LOG = LoggerFactory.getLogger(HealthCheckBeanPostProcessor.class);
@@ -34,11 +39,23 @@ public class HealthCheckBeanPostProcessor implements BeanPostProcessor, Ordered 
 	}
 
 	@Override
+	/**
+	 * <p>Post process before initialization.</p>
+	 * @param bean
+	 * @param beanName
+	 * @return the result
+	 */
 	public Object postProcessBeforeInitialization(Object bean, String beanName) {
 		return bean;
 	}
 
 	@Override
+	/**
+	 * <p>Post process after initialization.</p>
+	 * @param bean
+	 * @param beanName
+	 * @return the result
+	 */
 	public Object postProcessAfterInitialization(Object bean, String beanName) {
 		if (bean instanceof HealthCheck) {
 			healthChecks.register(beanName, (HealthCheck) bean);
@@ -50,6 +67,7 @@ public class HealthCheckBeanPostProcessor implements BeanPostProcessor, Ordered 
 	}
 
 	@Override
+	/** @return return the order. */
 	public int getOrder() {
 		return LOWEST_PRECEDENCE;
 	}

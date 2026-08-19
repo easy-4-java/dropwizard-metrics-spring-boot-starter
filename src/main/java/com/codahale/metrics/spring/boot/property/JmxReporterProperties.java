@@ -17,6 +17,11 @@ package com.codahale.metrics.spring.boot.property;
 
 import com.codahale.metrics.spring.boot.MetricsReportProperties;
 
+/**
+ * <p>Auto-configuration for JmxReporterProperties.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class JmxReporterProperties extends ReporterProperties  {
 
 	public static final String PREFIX = MetricsReportProperties.PREFIX + ".jmx";
@@ -24,10 +29,12 @@ public class JmxReporterProperties extends ReporterProperties  {
 	// Optional
 	private String domain;
 
+	/** @return return the domain. */
 	public String getDomain() {
 		return domain;
 	}
 
+	/** @param domain set the domain. */
 	public void setDomain(String domain) {
 		this.domain = domain;
 	}

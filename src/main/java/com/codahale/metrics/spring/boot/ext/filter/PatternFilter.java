@@ -20,6 +20,11 @@ import java.util.regex.Pattern;
 import com.codahale.metrics.Metric;
 import com.codahale.metrics.MetricFilter;
 
+/**
+ * <p>Auto-configuration for PatternFilter.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class PatternFilter implements MetricFilter {
 
 	final Pattern filter;
@@ -29,11 +34,21 @@ public class PatternFilter implements MetricFilter {
 	}
 
 	@Override
+	/**
+	 * <p>Matches.</p>
+	 * @param name
+	 * @param metric
+	 * @return the result
+	 */
 	public boolean matches(String name, Metric metric) {
 		return filter.matcher(name).matches();
 	}
 
 	@Override
+	/**
+	 * <p>To string.</p>
+	 * @return the result
+	 */
 	public String toString() {
 		return "[PatternFilter regex=" + filter.pattern() + "]";
 	}

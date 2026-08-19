@@ -30,6 +30,11 @@ import com.codahale.metrics.spring.boot.ext.filter.AnnotationFilter;
 import com.codahale.metrics.spring.boot.factory.AdviceFactory;
 import com.codahale.metrics.spring.boot.utils.MetricUtils;
 
+/**
+ * <p>Auto-configuration for MeteredMethodInterceptor.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class MeteredMethodInterceptor extends AbstractMetricMethodInterceptor<Metered, Meter> {
 
 	public static final Class<Metered> ANNOTATION = Metered.class;
@@ -41,24 +46,51 @@ public class MeteredMethodInterceptor extends AbstractMetricMethodInterceptor<Me
 	}
 
 	@Override
+	/**
+	 * <p>Invoke.</p>
+	 * @param invocation
+	 * @param meter
+	 * @param annotation
+	 * @return the result
+	 */
 	protected Object invoke(MethodInvocation invocation, Meter meter, Metered annotation) throws Throwable {
 		meter.mark();
 		return invocation.proceed();
 	}
 
 	@Override
+	/**
+	 * <p>Build metric.</p>
+	 * @param metricRegistry
+	 * @param metricName
+	 * @param annotation
+	 * @return the result
+	 */
 	protected Meter buildMetric(MetricRegistry metricRegistry, String metricName, Metered annotation) {
 		return metricRegistry.meter(metricName);
 	}
 
 	@Override
+	/**
+	 * <p>Build metric name.</p>
+	 * @param targetClass
+	 * @param method
+	 * @param annotation
+	 * @return the result
+	 */
 	protected String buildMetricName(Class<?> targetClass, Method method, Metered annotation) {
 		return MetricUtils.forMeteredMethod(targetClass, method, annotation);
 	}
 
+	/**
+	 * <p>Advice factory.</p>
+	 * @param metricRegistry
+	 * @return the result
+	 */
 	public static AdviceFactory adviceFactory(final MetricRegistry metricRegistry) {
 		return new AdviceFactory() {
 			@Override
+			/** @return return the advice. */
 			public Advice getAdvice(Object bean, Class<?> targetClass) {
 				return new MeteredMethodInterceptor(metricRegistry, targetClass);
 			}

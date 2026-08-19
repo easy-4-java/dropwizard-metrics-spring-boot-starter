@@ -29,6 +29,11 @@ import org.springframework.util.ReflectionUtils.MethodFilter;
 import static org.springframework.util.ReflectionUtils.USER_DECLARED_METHODS;
 import static java.lang.reflect.Modifier.*;
 
+/**
+ * <p>Auto-configuration for AnnotationFilter.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class AnnotationFilter implements MethodFilter, FieldFilter {
 
 	private static final Logger LOG = LoggerFactory.getLogger(AnnotationFilter.class);
@@ -68,6 +73,11 @@ public class AnnotationFilter implements MethodFilter, FieldFilter {
 	}
 
 	@Override
+	/**
+	 * <p>Matches.</p>
+	 * @param method
+	 * @return the result
+	 */
 	public boolean matches(Method method) {
 		if (USER_DECLARED_METHODS.matches(method) && method.isAnnotationPresent(clazz)) {
 			if (checkModifiers(method, methodModifiers)) {
@@ -82,6 +92,11 @@ public class AnnotationFilter implements MethodFilter, FieldFilter {
 	}
 
 	@Override
+	/**
+	 * <p>Matches.</p>
+	 * @param field
+	 * @return the result
+	 */
 	public boolean matches(Field field) {
 		if (field.isAnnotationPresent(clazz)) {
 			if (checkModifiers(field, fieldModifiers)) {
@@ -95,12 +110,22 @@ public class AnnotationFilter implements MethodFilter, FieldFilter {
 		return false;
 	}
 
+	/**
+	 * <p>Check modifiers.</p>
+	 * @param member
+	 * @param allowed
+	 * @return the result
+	 */
 	private boolean checkModifiers(Member member, int allowed) {
 		int modifiers = member.getModifiers();
 		return (modifiers & allowed) == modifiers;
 	}
 
 	@Override
+	/**
+	 * <p>To string.</p>
+	 * @return the result
+	 */
 	public String toString() {
 		return "[AnnotationFilter: @" + clazz.getSimpleName() + ", methodModifiers: (" + Modifier.toString(methodModifiers) + "), fieldModifiers: ("
 				+ Modifier.toString(fieldModifiers) + ")]";

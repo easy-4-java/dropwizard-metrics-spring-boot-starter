@@ -23,6 +23,11 @@ import com.codahale.metrics.Slf4jReporter;
 import com.codahale.metrics.Slf4jReporter.LoggingLevel;
 import com.codahale.metrics.spring.boot.property.Slf4jReporterProperties;
 
+/**
+ * <p>Auto-configuration for Slf4jReporterFactoryBean.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class Slf4jReporterFactoryBean extends AbstractScheduledReporterFactoryBean<Slf4jReporter, Slf4jReporterProperties> {
 
 	public Slf4jReporterFactoryBean(Slf4jReporterProperties properties) {
@@ -30,11 +35,17 @@ public class Slf4jReporterFactoryBean extends AbstractScheduledReporterFactoryBe
 	}
 	
 	@Override
+	/** @return return the object type. */
 	public Class<Slf4jReporter> getObjectType() {
 		return Slf4jReporter.class;
 	}
 
 	@Override
+	/**
+	 * <p>Create instance.</p>
+	 * @param properties
+	 * @return the result
+	 */
 	protected Slf4jReporter createInstance(Slf4jReporterProperties properties) {
 
 		

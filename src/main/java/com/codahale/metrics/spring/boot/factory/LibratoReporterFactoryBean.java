@@ -33,6 +33,11 @@ import com.librato.metrics.reporter.LibratoReporter;
 import com.librato.metrics.reporter.MetricExpansionConfig;
 import com.librato.metrics.reporter.ReporterBuilder;
 
+/**
+ * <p>Auto-configuration for LibratoReporterFactoryBean.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class LibratoReporterFactoryBean extends AbstractScheduledReporterFactoryBean<LibratoReporter,LibratoReporterProperties> {
 
 	private MetricPrefixSupplier sourceSupplier;
@@ -44,11 +49,17 @@ public class LibratoReporterFactoryBean extends AbstractScheduledReporterFactory
 	}
 
 	@Override
+	/** @return return the object type. */
 	public Class<LibratoReporter> getObjectType() {
 		return LibratoReporter.class;
 	}
 
 	@Override
+	/**
+	 * <p>Create instance.</p>
+	 * @param properties
+	 * @return the result
+	 */
 	protected LibratoReporter createInstance(LibratoReporterProperties properties) {
 		final String email = properties.getEmail();
 		final String token = properties.getToken();
@@ -129,26 +140,32 @@ public class LibratoReporterFactoryBean extends AbstractScheduledReporterFactory
 		return reporter.build();
 	}
 
+	/** @return return the source supplier. */
 	public MetricPrefixSupplier getSourceSupplier() {
 		return sourceSupplier;
 	}
 
+	/** @param sourceSupplier set the source supplier. */
 	public void setSourceSupplier(MetricPrefixSupplier sourceSupplier) {
 		this.sourceSupplier = sourceSupplier;
 	}
 
+	/** @return return the expansion config. */
 	public MetricExpansionConfig getExpansionConfig() {
 		return expansionConfig;
 	}
 
+	/** @param expansionConfig set the expansion config. */
 	public void setExpansionConfig(MetricExpansionConfig expansionConfig) {
 		this.expansionConfig = expansionConfig;
 	}
 
+	/** @return return the librato client factory. */
 	public ILibratoClientFactory getLibratoClientFactory() {
 		return libratoClientFactory;
 	}
 
+	/** @param libratoClientFactory set the librato client factory. */
 	public void setLibratoClientFactory(ILibratoClientFactory libratoClientFactory) {
 		this.libratoClientFactory = libratoClientFactory;
 	}

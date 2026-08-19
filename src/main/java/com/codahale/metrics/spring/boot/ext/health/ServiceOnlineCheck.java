@@ -6,9 +6,18 @@ import java.util.Enumeration;
 
 import com.codahale.metrics.health.HealthCheck;
 
+/**
+ * <p>Auto-configuration for ServiceOnlineCheck.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class ServiceOnlineCheck extends HealthCheck {
 
 	@Override
+	/**
+	 * <p>Check.</p>
+	 * @return the result
+	 */
 	protected Result check() throws Exception {
 
 		return null;

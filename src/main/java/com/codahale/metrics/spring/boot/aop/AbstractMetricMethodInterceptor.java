@@ -31,6 +31,11 @@ import org.springframework.util.ReflectionUtils.MethodFilter;
 
 import com.codahale.metrics.MetricRegistry;
 
+/**
+ * <p>Auto-configuration for AbstractMetricMethodInterceptor.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 abstract class AbstractMetricMethodInterceptor<A extends Annotation, M> implements MethodInterceptor, MethodCallback {
 
 	protected final Logger LOG = LoggerFactory.getLogger(getClass());
@@ -54,6 +59,11 @@ abstract class AbstractMetricMethodInterceptor<A extends Annotation, M> implemen
 	}
 
 	@Override
+	/**
+	 * <p>Invoke.</p>
+	 * @param invocation
+	 * @return the result
+	 */
 	public Object invoke(MethodInvocation invocation) throws Throwable {
 		final AnnotationMetricPair<A, M> annotationMetricPair = metrics.get(MethodKey.forMethod(invocation.getMethod()));
 		if (annotationMetricPair != null) {
@@ -65,6 +75,10 @@ abstract class AbstractMetricMethodInterceptor<A extends Annotation, M> implemen
 	}
 
 	@Override
+	/**
+	 * <p>Do with.</p>
+	 * @param method
+	 */
 	public void doWith(Method method) throws IllegalAccessException {
 		final A annotation = method.getAnnotation(annotationClass);
 		if (annotation != null) {
@@ -82,12 +96,38 @@ abstract class AbstractMetricMethodInterceptor<A extends Annotation, M> implemen
 		}
 	}
 
+	/**
+	 * <p>Build metric name.</p>
+	 * @param targetClass
+	 * @param method
+	 * @param annotation
+	 * @return the result
+	 */
 	protected abstract String buildMetricName(Class<?> targetClass, Method method, A annotation);
 
+	/**
+	 * <p>Build metric.</p>
+	 * @param metricRegistry
+	 * @param metricName
+	 * @param annotation
+	 * @return the result
+	 */
 	protected abstract M buildMetric(MetricRegistry metricRegistry, String metricName, A annotation);
 
+	/**
+	 * <p>Invoke.</p>
+	 * @param invocation
+	 * @param metric
+	 * @param annotation
+	 * @return the result
+	 */
 	protected abstract Object invoke(MethodInvocation invocation, M metric, A annotation) throws Throwable;
 
+	/**
+	 * <p>Auto-configuration for AnnotationMetricPair.</p>
+	 * @author <a href="https://github.com/loong10k">Loong Wan</a>
+	 * @since 1.0.0
+	 */
 	public static final class AnnotationMetricPair<A extends Annotation, M> {
 
 		private final A annotation;
@@ -98,10 +138,12 @@ abstract class AbstractMetricMethodInterceptor<A extends Annotation, M> implemen
 			this.meter = meter;
 		}
 
+		/** @return return the annotation. */
 		public A getAnnotation() {
 			return annotation;
 		}
 
+		/** @return return the meter. */
 		public M getMeter() {
 			return meter;
 		}

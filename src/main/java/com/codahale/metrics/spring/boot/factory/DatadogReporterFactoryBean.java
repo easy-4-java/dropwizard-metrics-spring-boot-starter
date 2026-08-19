@@ -34,6 +34,11 @@ import org.springframework.util.StringUtils;
 import com.codahale.metrics.spring.boot.property.DatadogReporterProperties;
 import com.codahale.metrics.spring.boot.property.DatadogReporterProperties.TransportEnum;
 
+/**
+ * <p>Auto-configuration for DatadogReporterFactoryBean.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class DatadogReporterFactoryBean extends AbstractScheduledReporterFactoryBean<DatadogReporter, DatadogReporterProperties> {
 
 	private DynamicTagsCallback tagsCallback;
@@ -44,11 +49,17 @@ public class DatadogReporterFactoryBean extends AbstractScheduledReporterFactory
 	}
 
 	@Override
+	/** @return return the object type. */
 	public Class<DatadogReporter> getObjectType() {
 		return DatadogReporter.class;
 	}
 
 	@Override
+	/**
+	 * <p>Create instance.</p>
+	 * @param properties
+	 * @return the result
+	 */
 	protected DatadogReporter createInstance(DatadogReporterProperties properties) {
 		
 		final DatadogReporter.Builder reporter = DatadogReporter.forRegistry(getMetricRegistry())
@@ -131,18 +142,22 @@ public class DatadogReporterFactoryBean extends AbstractScheduledReporterFactory
 		return reporter.build();
 	}
 
+	/** @return return the tags callback. */
 	public DynamicTagsCallback getTagsCallback() {
 		return tagsCallback;
 	}
 
+	/** @param tagsCallback set the tags callback. */
 	public void setTagsCallback(DynamicTagsCallback tagsCallback) {
 		this.tagsCallback = tagsCallback;
 	}
 
+	/** @return return the formatter. */
 	public MetricNameFormatter getFormatter() {
 		return formatter;
 	}
 
+	/** @param formatter set the formatter. */
 	public void setFormatter(MetricNameFormatter formatter) {
 		this.formatter = formatter;
 	}

@@ -17,6 +17,10 @@ public class HttpSessionMetricsListener implements HttpSessionListener {
 	protected MetricRegistry registry = MetricsFactory.getMetricRegistry("http-session");
 	
 	@Override
+	/**
+	 * <p>Session created.</p>
+	 * @param event
+	 */
 	public void sessionCreated(HttpSessionEvent event) {
 		
 		String prefix = MetricRegistry.name(this.getClass(), event.getSession().getServletContext().getContextPath(), "session", "created" );
@@ -25,6 +29,10 @@ public class HttpSessionMetricsListener implements HttpSessionListener {
 	}
 
 	@Override
+	/**
+	 * <p>Session destroyed.</p>
+	 * @param event
+	 */
 	public void sessionDestroyed(HttpSessionEvent event) {
 		
 		String prefix = MetricRegistry.name(this.getClass(), event.getSession().getServletContext().getContextPath(), "session", "destroyed" );

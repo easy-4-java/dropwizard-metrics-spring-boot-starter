@@ -26,6 +26,11 @@ import com.palominolabs.metrics.newrelic.AllEnabledMetricAttributeFilter;
 import com.palominolabs.metrics.newrelic.MetricAttributeFilter;
 import com.palominolabs.metrics.newrelic.NewRelicReporter;
 
+/**
+ * <p>Auto-configuration for NewRelicReporterFactoryBean.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class NewRelicReporterFactoryBean
 		extends AbstractScheduledReporterFactoryBean<NewRelicReporter, NewRelicReporterProperties> {
 
@@ -38,11 +43,17 @@ public class NewRelicReporterFactoryBean
 	}
 
 	@Override
+	/** @return return the object type. */
 	public Class<NewRelicReporter> getObjectType() {
 		return NewRelicReporter.class;
 	}
 
 	@Override
+	/**
+	 * <p>Create instance.</p>
+	 * @param properties
+	 * @return the result
+	 */
 	protected NewRelicReporter createInstance(NewRelicReporterProperties properties) throws Exception {
 
 		String prefix = this.getProperty(getPrefix(), EMPTY_STRING);
@@ -60,10 +71,12 @@ public class NewRelicReporterFactoryBean
 				prefix);
 	}
 
+	/** @return return the attribute filter. */
 	public MetricAttributeFilter getAttributeFilter() {
 		return attributeFilter;
 	}
 
+	/** @param attributeFilter set the attribute filter. */
 	public void setAttributeFilter(MetricAttributeFilter attributeFilter) {
 		this.attributeFilter = attributeFilter;
 	}

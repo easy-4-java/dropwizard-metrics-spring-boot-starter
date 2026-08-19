@@ -24,10 +24,20 @@ import com.codahale.metrics.spring.boot.factory.support.SenderType;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 
+/**
+ * <p>Auto-configuration for InfluxdbReporterProperties.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class InfluxdbReporterProperties extends ReporterProperties  {
 	
 	public static final String PREFIX = MetricsReportProperties.PREFIX + ".influxdb";
 	
+	/**
+	 * <p>Auto-configuration for Protocol.</p>
+	 * @author <a href="https://github.com/loong10k">Loong Wan</a>
+	 * @since 1.0.0
+	 */
 	public enum Protocol {
 
 		HTTP("http"), HTTPS("https");
@@ -38,18 +48,37 @@ public class InfluxdbReporterProperties extends ReporterProperties  {
 			this.protocol = protocol;
 		}
 
+		/**
+		 * <p>Get.</p>
+		 * @return the result
+		 */
 		public String get() {
 			return protocol;
 		}
 		
+		/**
+		 * <p>Equals.</p>
+		 * @param protocol
+		 * @return the result
+		 */
 		public boolean equals(Protocol protocol){
 			return this.compareTo(protocol) == 0;
 		}
 		
+		/**
+		 * <p>Equals.</p>
+		 * @param protocol
+		 * @return the result
+		 */
 		public boolean equals(String protocol){
 			return this.compareTo(Protocol.valueOfIgnoreCase(protocol)) == 0;
 		}
 		
+		/**
+		 * <p>Value of ignore case.</p>
+		 * @param key
+		 * @return the result
+		 */
 		public static Protocol valueOfIgnoreCase(String key) {
 			for (Protocol protocol : Protocol.values()) {
 				if(protocol.get().equalsIgnoreCase(key)) {
@@ -114,114 +143,142 @@ public class InfluxdbReporterProperties extends ReporterProperties  {
 			.add("jvm.memory.pools.Metaspace.usage").add("jvm.memory.pools.PS-Eden-Space.usage")
 			.add("jvm.memory.pools.PS-Old-Gen.usage").add("jvm.memory.pools.PS-Survivor-Space.usage").build();
 
+	/** @return return the protocol. */
 	public Protocol getProtocol() {
 		return protocol;
 	}
 
+	/** @param protocol set the protocol. */
 	public void setProtocol(Protocol protocol) {
 		this.protocol = protocol;
 	}
 
+	/** @return return the host. */
 	public String getHost() {
 		return host;
 	}
 
+	/** @param host set the host. */
 	public void setHost(String host) {
 		this.host = host;
 	}
 
+	/** @return return the port. */
 	public int getPort() {
 		return port;
 	}
 
+	/** @param port set the port. */
 	public void setPort(int port) {
 		this.port = port;
 	}
 
+	/** @return return the tags. */
 	public Map<String, String> getTags() {
 		return tags;
 	}
 
+	/** @param tags set the tags. */
 	public void setTags(Map<String, String> tags) {
 		this.tags = tags;
 	}
 
+	/** @return return the fields. */
 	public ImmutableMap<String, ImmutableSet<String>> getFields() {
 		return fields;
 	}
 
+	/** @param fields set the fields. */
 	public void setFields(ImmutableMap<String, ImmutableSet<String>> fields) {
 		this.fields = fields;
 	}
 
+	/** @return return the database. */
 	public String getDatabase() {
 		return database;
 	}
 
+	/** @param database set the database. */
 	public void setDatabase(String database) {
 		this.database = database;
 	}
 
+	/** @return return the auth. */
 	public String getAuth() {
 		return auth;
 	}
 
+	/** @param auth set the auth. */
 	public void setAuth(String auth) {
 		this.auth = auth;
 	}
 
+	/** @return return the connect timeout. */
 	public int getConnectTimeout() {
 		return connectTimeout;
 	}
 
+	/** @param connectTimeout set the connect timeout. */
 	public void setConnectTimeout(int connectTimeout) {
 		this.connectTimeout = connectTimeout;
 	}
 
+	/** @return return the read timeout. */
 	public int getReadTimeout() {
 		return readTimeout;
 	}
 
+	/** @param readTimeout set the read timeout. */
 	public void setReadTimeout(int readTimeout) {
 		this.readTimeout = readTimeout;
 	}
 
+	/** @return return the group gauges. */
 	public boolean getGroupGauges() {
 		return groupGauges;
 	}
 
+	/** @param groupGauges set the group gauges. */
 	public void setGroupGauges(boolean groupGauges) {
 		this.groupGauges = groupGauges;
 	}
 
+	/** @return return the measurement mappings. */
 	public Map<String, String> getMeasurementMappings() {
 		return measurementMappings;
 	}
 
+	/** @param measurementMappings set the measurement mappings. */
 	public void setMeasurementMappings(ImmutableMap<String, String> measurementMappings) {
 		this.measurementMappings = measurementMappings;
 	}
 
+	/** @return return the default measurement mappings. */
 	public Map<String, String> getDefaultMeasurementMappings() {
 		return defaultMeasurementMappings;
 	}
 
+	/** @return return the excludes. */
 	public ImmutableSet<String> getExcludes() {
 		return this.excludes;
 	}
 
+	/** @param excludes set the excludes. */
 	public void setExcludes(ImmutableSet<String> excludes) {
 		this.excludes = excludes;
 	}
 
+	/** @param defaultMeasurementMappings set the default measurement mappings. */
 	public void setDefaultMeasurementMappings(ImmutableMap<String, String> defaultMeasurementMappings) {
 		this.defaultMeasurementMappings = defaultMeasurementMappings;
 	}
 
+	/** @param senderType set the sender type. */
 	public void setSenderType(SenderType senderType) {
 		this.senderType = senderType;
 	}
 
+	/** @return return the sender type. */
 	public SenderType getSenderType() {
 		return senderType;
 	}

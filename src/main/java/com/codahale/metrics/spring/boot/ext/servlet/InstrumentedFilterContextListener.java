@@ -26,6 +26,10 @@ import com.codahale.metrics.spring.boot.ext.MetricsFactory;
 public class InstrumentedFilterContextListener implements jakarta.servlet.ServletContextListener {
 
     @Override
+    /**
+     * <p>Context initialized.</p>
+     * @param sce
+     */
     public void contextInitialized(jakarta.servlet.ServletContextEvent sce) {
         sce.getServletContext().setAttribute(
                 InstrumentedFilter.REGISTRY_ATTRIBUTE,
@@ -33,10 +37,15 @@ public class InstrumentedFilterContextListener implements jakarta.servlet.Servle
     }
 
     @Override
+    /**
+     * <p>Context destroyed.</p>
+     * @param sce
+     */
     public void contextDestroyed(jakarta.servlet.ServletContextEvent sce) {
         // no-op
     }
 
+    /** @return return the metric registry. */
     protected MetricRegistry getMetricRegistry() {
         return MetricsFactory.getContextMetricRegistry();
     }

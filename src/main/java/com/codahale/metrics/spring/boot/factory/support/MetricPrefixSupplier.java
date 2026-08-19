@@ -15,6 +15,11 @@
  */
 package com.codahale.metrics.spring.boot.factory.support;
 
+/**
+ * <p>Auto-configuration for MetricPrefixSupplier.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public interface MetricPrefixSupplier {
 
 	String getPrefix();

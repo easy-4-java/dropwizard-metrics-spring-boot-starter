@@ -17,6 +17,11 @@ package com.codahale.metrics.spring.boot.property;
 
 import com.codahale.metrics.spring.boot.MetricsReportProperties;
 
+/**
+ * <p>Auto-configuration for Slf4jReporterProperties.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class Slf4jReporterProperties extends ReporterProperties  {
 
 	public static final String PREFIX = MetricsReportProperties.PREFIX + ".slf4j";
@@ -26,26 +31,32 @@ public class Slf4jReporterProperties extends ReporterProperties  {
 	private String logger;
 	private String level = "DEBUG";
 
+	/** @return return the marker. */
 	public String getMarker() {
 		return marker;
 	}
 
+	/** @param marker set the marker. */
 	public void setMarker(String marker) {
 		this.marker = marker;
 	}
 
+	/** @return return the logger. */
 	public String getLogger() {
 		return logger;
 	}
 
+	/** @param logger set the logger. */
 	public void setLogger(String logger) {
 		this.logger = logger;
 	}
 
+	/** @return return the level. */
 	public String getLevel() {
 		return level;
 	}
 
+	/** @param level set the level. */
 	public void setLevel(String level) {
 		this.level = level;
 	}

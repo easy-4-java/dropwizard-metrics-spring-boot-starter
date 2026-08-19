@@ -19,6 +19,11 @@ package com.codahale.metrics.spring.boot.ext.filter;
 import com.codahale.metrics.Metric;
 import com.codahale.metrics.MetricFilter;
 
+/**
+ * <p>Auto-configuration for NamedFilter.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class NamedFilter implements MetricFilter {
 
 	protected String metricKey;
@@ -28,19 +33,31 @@ public class NamedFilter implements MetricFilter {
 	}
 	
 	@Override
+	/**
+	 * <p>Matches.</p>
+	 * @param name
+	 * @param metric
+	 * @return the result
+	 */
 	public boolean matches(String name, Metric metric) {
 		return name.equals(metricKey);
 	}
 	
+	/** @return return the metric. */
 	public String getMetric() {
 		return metricKey;
 	}
 
+	/** @param metric set the metric. */
 	public void setMetric(String metric) {
 		this.metricKey = metric;
 	}
 
 	@Override
+	/**
+	 * <p>To string.</p>
+	 * @return the result
+	 */
 	public String toString() {
 		return "[NamedFilter metric=" + metricKey + "]";
 	}

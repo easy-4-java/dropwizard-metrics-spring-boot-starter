@@ -32,6 +32,11 @@ import org.springframework.util.ClassUtils;
 import com.codahale.metrics.spring.boot.factory.AdviceFactory;
 
 
+/**
+ * <p>Auto-configuration for AdvisingBeanPostProcessor.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class AdvisingBeanPostProcessor implements BeanPostProcessor {
 
 	private static final Logger LOG = LoggerFactory.getLogger(AdvisingBeanPostProcessor.class);
@@ -49,11 +54,23 @@ public class AdvisingBeanPostProcessor implements BeanPostProcessor {
 	}
 
 	@Override
+	/**
+	 * <p>Post process before initialization.</p>
+	 * @param bean
+	 * @param beanName
+	 * @return the result
+	 */
 	public Object postProcessBeforeInitialization(Object bean, String beanName) {
 		return bean;
 	}
 
 	@Override
+	/**
+	 * <p>Post process after initialization.</p>
+	 * @param bean
+	 * @param beanName
+	 * @return the result
+	 */
 	public Object postProcessAfterInitialization(Object bean, String beanName) {
 		if (bean instanceof AopInfrastructureBean) {
 			return bean;

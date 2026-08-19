@@ -110,6 +110,11 @@ public class DatabaseReporter extends ScheduledReporter {
 			this.closeOnCommit = true;
 		}
 
+		/**
+		 * <p>Close on commit.</p>
+		 * @param closeOnCommit
+		 * @return the result
+		 */
 		public Builder closeOnCommit(boolean closeOnCommit) {
 			this.closeOnCommit = closeOnCommit;
 			return this;
@@ -192,56 +197,111 @@ public class DatabaseReporter extends ScheduledReporter {
 			return this;
 		}
 
+		/**
+		 * <p>Rollback on exception.</p>
+		 * @param rollbackOnException
+		 * @return the result
+		 */
 		public Builder rollbackOnException(boolean rollbackOnException) {
 			this.rollbackOnException = rollbackOnException;
 			return this;
 		}
 
+		/**
+		 * <p>Cauge table.</p>
+		 * @param caugeTable
+		 * @return the result
+		 */
 		public Builder caugeTable(String caugeTable) {
 			this.caugeTable = caugeTable;
 			return this;
 		}
 
+		/**
+		 * <p>Counter table.</p>
+		 * @param counterTable
+		 * @return the result
+		 */
 		public Builder counterTable(String counterTable) {
 			this.counterTable = counterTable;
 			return this;
 		}
 
+		/**
+		 * <p>Histogram table.</p>
+		 * @param histogramTable
+		 * @return the result
+		 */
 		public Builder histogramTable(String histogramTable) {
 			this.histogramTable = histogramTable;
 			return this;
 		}
 
+		/**
+		 * <p>Meter table.</p>
+		 * @param meterTable
+		 * @return the result
+		 */
 		public Builder meterTable(String meterTable) {
 			this.meterTable = meterTable;
 			return this;
 		}
 
+		/**
+		 * <p>Timer table.</p>
+		 * @param timerTable
+		 * @return the result
+		 */
 		public Builder timerTable(String timerTable) {
 			this.timerTable = timerTable;
 			return this;
 		}
 
+		/**
+		 * <p>Allow cauge.</p>
+		 * @param allowCauge
+		 * @return the result
+		 */
 		public Builder allowCauge(boolean allowCauge) {
 			this.allowCauge = allowCauge;
 			return this;
 		}
 
+		/**
+		 * <p>Allow counter.</p>
+		 * @param allowCounter
+		 * @return the result
+		 */
 		public Builder allowCounter(boolean allowCounter) {
 			this.allowCounter = allowCounter;
 			return this;
 		}
 
+		/**
+		 * <p>Allow histogram.</p>
+		 * @param allowHistogram
+		 * @return the result
+		 */
 		public Builder allowHistogram(boolean allowHistogram) {
 			this.allowHistogram = allowHistogram;
 			return this;
 		}
 
+		/**
+		 * <p>Allow meter.</p>
+		 * @param allowMeter
+		 * @return the result
+		 */
 		public Builder allowMeter(boolean allowMeter) {
 			this.allowMeter = allowMeter;
 			return this;
 		}
 
+		/**
+		 * <p>Allow timer.</p>
+		 * @param allowTimer
+		 * @return the result
+		 */
 		public Builder allowTimer(boolean allowTimer) {
 			this.allowTimer = allowTimer;
 			return this;
@@ -386,6 +446,12 @@ public class DatabaseReporter extends ScheduledReporter {
 	}
 
 	@SuppressWarnings("rawtypes")
+	/**
+	 * <p>Report gauges.</p>
+	 * @param connection
+	 * @param timestamp
+	 * @param gauges
+	 */
 	private void reportGauges(Connection connection, long timestamp, SortedMap<String, Gauge> gauges)
 			throws SQLException {
 		
@@ -415,6 +481,12 @@ public class DatabaseReporter extends ScheduledReporter {
 	}
 	 
 	
+	/**
+	 * <p>Report counters.</p>
+	 * @param connection
+	 * @param timestamp
+	 * @param counters
+	 */
 	private void reportCounters(Connection connection, long timestamp, SortedMap<String, Counter> counters)
 			throws SQLException {
 		
@@ -462,6 +534,12 @@ public class DatabaseReporter extends ScheduledReporter {
 	}
 
 
+	/**
+	 * <p>Report histograms.</p>
+	 * @param connection
+	 * @param timestamp
+	 * @param histograms
+	 */
 	private void reportHistograms(Connection connection, long timestamp, SortedMap<String, Histogram> histograms)
 			throws SQLException {
 		
@@ -517,6 +595,12 @@ public class DatabaseReporter extends ScheduledReporter {
 	}
 	
 
+	/**
+	 * <p>Report meters.</p>
+	 * @param connection
+	 * @param timestamp
+	 * @param meters
+	 */
 	private void reportMeters(Connection connection, long timestamp, SortedMap<String, Meter> meters)
 			throws SQLException {
 		
@@ -558,6 +642,12 @@ public class DatabaseReporter extends ScheduledReporter {
 
 	}
 	
+	/**
+	 * <p>Report timers.</p>
+	 * @param connection
+	 * @param timestamp
+	 * @param timers
+	 */
 	private void reportTimers(Connection connection, long timestamp, SortedMap<String, Timer> timers) throws SQLException {
 		
 		if(!allowTimer || CollectionUtils.isEmpty(timers)) {

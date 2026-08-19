@@ -8,6 +8,11 @@ import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.spring.boot.ext.MetricsFactory;
 
 
+/**
+ * <p>Auto-configuration for HttpServletRequestMetricsListener.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class HttpServletRequestMetricsListener implements ServletRequestListener {
 
 	/**
@@ -16,6 +21,10 @@ public class HttpServletRequestMetricsListener implements ServletRequestListener
 	protected MetricRegistry registry = MetricsFactory.getMetricRegistry("http-request");
 	
 	@Override
+	/**
+	 * <p>Request initialized.</p>
+	 * @param requestEvent
+	 */
 	public void requestInitialized(ServletRequestEvent requestEvent) {
 
 		if (!(requestEvent.getServletRequest() instanceof HttpServletRequest)) {
@@ -34,6 +43,10 @@ public class HttpServletRequestMetricsListener implements ServletRequestListener
 	}
 	
 	@Override
+	/**
+	 * <p>Request destroyed.</p>
+	 * @param event
+	 */
 	public void requestDestroyed(ServletRequestEvent event) {
 		
 	}

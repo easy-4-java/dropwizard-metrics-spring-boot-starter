@@ -22,11 +22,19 @@ import com.codahale.metrics.spring.boot.event.CountedEvent;
 import com.codahale.metrics.spring.boot.event.MetricEventPoint;
 import com.codahale.metrics.spring.boot.ext.MetricsFactory;
 
+/**
+ * <p>Auto-configuration for CountedEventListener.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class CountedEventListener extends MetricEventListener<CountedEvent> {
 
 	protected MetricRegistry metricRegistry;
 	
 	@Override
+	/**
+	 * <p>After properties set.</p>
+	 */
 	public void afterPropertiesSet() throws Exception {
 		if(getMetricsFactory() != null){
 			metricRegistry = getMetricsFactory().getRegistry();
@@ -37,6 +45,10 @@ public class CountedEventListener extends MetricEventListener<CountedEvent> {
 	
 	@Async
 	@Override
+	/**
+	 * <p>On application event.</p>
+	 * @param event
+	 */
 	public void onApplicationEvent(CountedEvent event) {
 		
 		//获取绑定数据对象
@@ -48,6 +60,7 @@ public class CountedEventListener extends MetricEventListener<CountedEvent> {
 		
 	}
 
+	/** @return return the metric registry. */
 	public MetricRegistry getMetricRegistry() {
 		return metricRegistry;
 	}

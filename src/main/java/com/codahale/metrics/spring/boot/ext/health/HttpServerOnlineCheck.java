@@ -19,6 +19,10 @@ public class HttpServerOnlineCheck extends HealthCheck {
 	}
 	
 	@Override
+	/**
+	 * <p>Check.</p>
+	 * @return the result
+	 */
 	protected Result check() throws Exception {
 		try {
 			URL url = new URL(getHttpURL());
@@ -34,6 +38,10 @@ public class HttpServerOnlineCheck extends HealthCheck {
 		}
 	}
  
+	/**
+	 * <p>On pre handle.</p>
+	 * @param conn
+	 */
 	protected void onPreHandle(HttpURLConnection conn) throws Exception {
 		conn.setConnectTimeout(5000);
 		conn.setReadTimeout(3000);
@@ -42,10 +50,12 @@ public class HttpServerOnlineCheck extends HealthCheck {
 		conn.setRequestProperty("Charset", "UTF-8"); 
 	}
 	
+	/** @return return the http u r l. */
 	public String getHttpURL() {
 		return httpURL;
 	}
 
+	/** @param httpURL set the http u r l. */
 	public void setHttpURL(String httpURL) {
 		this.httpURL = httpURL;
 	}

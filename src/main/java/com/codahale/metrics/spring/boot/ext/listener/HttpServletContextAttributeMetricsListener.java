@@ -17,6 +17,10 @@ public class HttpServletContextAttributeMetricsListener implements ServletContex
 	protected MetricRegistry registry = MetricsFactory.getMetricRegistry("http-servletcontext-attribute");
 	
 	@Override
+	/**
+	 * <p>Attribute added.</p>
+	 * @param event
+	 */
 	public void attributeAdded(ServletContextAttributeEvent event) {
 		
 		String prefix = MetricRegistry.name(this.getClass(), event.getServletContext().getContextPath(), "ServletContext", "attributeAdded" );
@@ -25,6 +29,10 @@ public class HttpServletContextAttributeMetricsListener implements ServletContex
 	}
 
 	@Override
+	/**
+	 * <p>Attribute removed.</p>
+	 * @param event
+	 */
 	public void attributeRemoved(ServletContextAttributeEvent event) {
 
 		String prefix = MetricRegistry.name(this.getClass(), event.getServletContext().getContextPath(), "ServletContext", "attributeRemoved" );
@@ -33,6 +41,10 @@ public class HttpServletContextAttributeMetricsListener implements ServletContex
 	}
 
 	@Override
+	/**
+	 * <p>Attribute replaced.</p>
+	 * @param event
+	 */
 	public void attributeReplaced(ServletContextAttributeEvent event) {
 		
 		String prefix = MetricRegistry.name(this.getClass(), event.getServletContext().getContextPath(), "ServletContext", "attributeReplaced" );

@@ -22,6 +22,11 @@ import com.codahale.metrics.spring.boot.property.ZabbixReporterProperties;
 import io.github.hengyunabc.metrics.ZabbixReporter;
 import io.github.hengyunabc.zabbix.sender.ZabbixSender;
 
+/**
+ * <p>Auto-configuration for ZabbixReporterFactoryBean.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class ZabbixReporterFactoryBean
 		extends AbstractScheduledReporterFactoryBean<ZabbixReporter, ZabbixReporterProperties> {
 
@@ -30,11 +35,17 @@ public class ZabbixReporterFactoryBean
 	}
 
 	@Override
+	/** @return return the object type. */
 	public Class<ZabbixReporter> getObjectType() {
 		return ZabbixReporter.class;
 	}
 
 	@Override
+	/**
+	 * <p>Create instance.</p>
+	 * @param properties
+	 * @return the result
+	 */
 	protected ZabbixReporter createInstance(ZabbixReporterProperties properties) {
 
 		final ZabbixReporter.Builder reporter = ZabbixReporter.forRegistry(getMetricRegistry())

@@ -63,6 +63,10 @@ public class InstrumentedFilter implements Filter {
     private Timer requestTimer;
 
     @Override
+    /**
+     * <p>Init.</p>
+     * @param config
+     */
     public void init(FilterConfig config) throws ServletException {
         this.registry = getMetricRegistry(config);
         this.metersByStatusCode = new ConcurrentHashMap<>();
@@ -74,6 +78,12 @@ public class InstrumentedFilter implements Filter {
     }
 
     @Override
+    /**
+     * <p>Do filter.</p>
+     * @param request
+     * @param response
+     * @param chain
+     */
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         activeRequests.inc();
@@ -103,10 +113,17 @@ public class InstrumentedFilter implements Filter {
     }
 
     @Override
+    /**
+     * <p>Destroy.</p>
+     */
     public void destroy() {
         // no-op
     }
 
+    /**
+     * <p>Mark meter for status code.</p>
+     * @param status
+     */
     private void markMeterForStatusCode(int status) {
         Meter meter = metersByStatusCode.get(status);
         if (meter == null) {
@@ -116,6 +133,11 @@ public class InstrumentedFilter implements Filter {
         meter.mark();
     }
 
+    /**
+     * <p>Name.</p>
+     * @param parts
+     * @return the result
+     */
     private String name(String... parts) {
         final String[] n = new String[parts.length + 1];
         n[0] = METRIC_PREFIX;
@@ -123,6 +145,7 @@ public class InstrumentedFilter implements Filter {
         return MetricRegistry.name(NAME_PREFIX, n);
     }
 
+    /** @return return the metric registry. */
     private MetricRegistry getMetricRegistry(FilterConfig config) {
         final MetricRegistry registry = (MetricRegistry) config.getServletContext()
                 .getAttribute(REGISTRY_ATTRIBUTE);
@@ -132,6 +155,11 @@ public class InstrumentedFilter implements Filter {
         return registry;
     }
 
+    /**
+     * <p>Auto-configuration for StatusExposingServletResponse.</p>
+     * @author <a href="https://github.com/loong10k">Loong Wan</a>
+     * @since 1.0.0
+     */
     private static class StatusExposingServletResponse extends HttpServletResponseWrapper {
         private int httpStatus = HttpServletResponse.SC_OK;
 
@@ -140,24 +168,35 @@ public class InstrumentedFilter implements Filter {
         }
 
         @Override
+        /**
+         * <p>Send error.</p>
+         * @param sc
+         */
         public void sendError(int sc) throws IOException {
             httpStatus = sc;
             super.sendError(sc);
         }
 
         @Override
+        /**
+         * <p>Send error.</p>
+         * @param sc
+         * @param msg
+         */
         public void sendError(int sc, String msg) throws IOException {
             httpStatus = sc;
             super.sendError(sc, msg);
         }
 
         @Override
+        /** @param sc set the status. */
         public void setStatus(int sc) {
             httpStatus = sc;
             super.setStatus(sc);
         }
 
         @Override
+        /** @return return the status. */
         public int getStatus() {
             return httpStatus;
         }

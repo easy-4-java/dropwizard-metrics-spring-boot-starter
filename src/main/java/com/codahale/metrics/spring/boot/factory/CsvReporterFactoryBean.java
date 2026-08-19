@@ -23,6 +23,11 @@ import org.springframework.util.StringUtils;
 import com.codahale.metrics.CsvReporter;
 import com.codahale.metrics.spring.boot.property.CsvReporterProperties;
 
+/**
+ * <p>Auto-configuration for CsvReporterFactoryBean.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class CsvReporterFactoryBean extends AbstractScheduledReporterFactoryBean<CsvReporter,CsvReporterProperties> {
 
 	public CsvReporterFactoryBean(CsvReporterProperties properties) {
@@ -30,11 +35,17 @@ public class CsvReporterFactoryBean extends AbstractScheduledReporterFactoryBean
 	}
 
 	@Override
+	/** @return return the object type. */
 	public Class<CsvReporter> getObjectType() {
 		return CsvReporter.class;
 	}
 	
 	@Override
+	/**
+	 * <p>Create instance.</p>
+	 * @param properties
+	 * @return the result
+	 */
 	protected CsvReporter createInstance(CsvReporterProperties properties) {
 		
 		final CsvReporter.Builder reporter = CsvReporter.forRegistry(getMetricRegistry())

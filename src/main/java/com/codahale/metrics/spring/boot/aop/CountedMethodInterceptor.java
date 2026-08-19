@@ -30,6 +30,11 @@ import com.codahale.metrics.spring.boot.ext.filter.AnnotationFilter;
 import com.codahale.metrics.spring.boot.factory.AdviceFactory;
 import com.codahale.metrics.spring.boot.utils.MetricUtils;
 
+/**
+ * <p>Auto-configuration for CountedMethodInterceptor.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class CountedMethodInterceptor extends AbstractMetricMethodInterceptor<Counted, Counter> {
 
 	public static final Class<Counted> ANNOTATION = Counted.class;
@@ -41,6 +46,13 @@ public class CountedMethodInterceptor extends AbstractMetricMethodInterceptor<Co
 	}
 
 	@Override
+	/**
+	 * <p>Invoke.</p>
+	 * @param invocation
+	 * @param counter
+	 * @param annotation
+	 * @return the result
+	 */
 	protected Object invoke(MethodInvocation invocation, Counter counter, Counted annotation) throws Throwable {
 		try {
 			counter.inc();
@@ -54,18 +66,38 @@ public class CountedMethodInterceptor extends AbstractMetricMethodInterceptor<Co
 	}
 
 	@Override
+	/**
+	 * <p>Build metric.</p>
+	 * @param metricRegistry
+	 * @param metricName
+	 * @param annotation
+	 * @return the result
+	 */
 	protected Counter buildMetric(MetricRegistry metricRegistry, String metricName, Counted annotation) {
 		return metricRegistry.counter(metricName);
 	}
 
 	@Override
+	/**
+	 * <p>Build metric name.</p>
+	 * @param targetClass
+	 * @param method
+	 * @param annotation
+	 * @return the result
+	 */
 	protected String buildMetricName(Class<?> targetClass, Method method, Counted annotation) {
 		return MetricUtils.forCountedMethod(targetClass, method, annotation);
 	}
 
+	/**
+	 * <p>Advice factory.</p>
+	 * @param metricRegistry
+	 * @return the result
+	 */
 	public static AdviceFactory adviceFactory(final MetricRegistry metricRegistry) {
 		return new AdviceFactory() {
 			@Override
+			/** @return return the advice. */
 			public Advice getAdvice(Object bean, Class<?> targetClass) {
 				return new CountedMethodInterceptor(metricRegistry, targetClass);
 			}

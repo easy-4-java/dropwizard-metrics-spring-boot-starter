@@ -18,6 +18,11 @@ package com.codahale.metrics.spring.boot.event;
 import java.util.Map;
 
 @SuppressWarnings("serial")
+/**
+ * <p>Auto-configuration for CountedEvent.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class CountedEvent extends MetricEvent<MetricEventPoint> {
 
 	public CountedEvent(Object source, MetricEventPoint bind) {

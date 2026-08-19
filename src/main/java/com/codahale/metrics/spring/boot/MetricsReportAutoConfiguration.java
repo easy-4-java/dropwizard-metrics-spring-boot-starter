@@ -58,6 +58,11 @@ import com.codahale.metrics.spring.boot.utils.SystemClock;
 @ConditionalOnClass({ MetricRegistry.class, ScheduledReporter.class })
 @EnableConfigurationProperties(MetricsReportProperties.class)
 @AutoConfigureAfter(MetricsAutoConfiguration.class)
+/**
+ * <p>Auto-configuration for MetricsReportAutoConfiguration.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class MetricsReportAutoConfiguration implements DisposableBean {
 
 	/**
@@ -65,6 +70,10 @@ public class MetricsReportAutoConfiguration implements DisposableBean {
 	 */
 	@Bean
 	@ConditionalOnMissingBean
+	/**
+	 * <p>Clock.</p>
+	 * @return the result
+	 */
 	public Clock clock() {
 		return SystemClock.instance();
 	}
@@ -163,6 +172,9 @@ public class MetricsReportAutoConfiguration implements DisposableBean {
 	 * @throws Exception never thrown by the current implementation
 	 */
 	@Override
+	/**
+	 * <p>Destroy.</p>
+	 */
 	public void destroy() throws Exception {
 
 	}

@@ -26,6 +26,11 @@ import org.springframework.context.SmartLifecycle;
 import com.codahale.metrics.ScheduledReporter;
 import com.codahale.metrics.spring.boot.property.ReporterProperties;
 
+/**
+ * <p>Auto-configuration for AbstractScheduledReporterFactoryBean.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public abstract class AbstractScheduledReporterFactoryBean<T extends ScheduledReporter,P extends ReporterProperties> extends AbstractReporterFactoryBean<T,P> implements SmartLifecycle,
 		DisposableBean {
 
@@ -38,6 +43,9 @@ public abstract class AbstractScheduledReporterFactoryBean<T extends ScheduledRe
 	}
  
 	@Override
+	/**
+	 * <p>Start.</p>
+	 */
 	public void start() {
 		if (isEnabled() && !isRunning()) {
 			getObject().start(getPeriod(), TimeUnit.NANOSECONDS);
@@ -46,6 +54,9 @@ public abstract class AbstractScheduledReporterFactoryBean<T extends ScheduledRe
 	}
 
 	@Override
+	/**
+	 * <p>Stop.</p>
+	 */
 	public void stop() {
 		if (isEnabled() && isRunning()) {
 			getObject().stop();
@@ -54,19 +65,29 @@ public abstract class AbstractScheduledReporterFactoryBean<T extends ScheduledRe
 	}
 
 	@Override
+	/** @return return whether running is enabled. */
 	public boolean isRunning() {
 		return running;
 	}
 
 	@Override
+	/**
+	 * <p>Destroy.</p>
+	 */
 	public void destroy() throws Exception {
 		stop();
 	}
 	
+	/** @return return the period. */
 	protected long getPeriod() {
 		return convertDurationString(getProperties().getPeriod());
 	}
 
+	/**
+	 * <p>Parse locale.</p>
+	 * @param localeString
+	 * @return the result
+	 */
 	protected Locale parseLocale(String localeString) {
 		final int underscore = localeString.indexOf('_');
 		if (underscore == -1) {
@@ -121,17 +142,23 @@ public abstract class AbstractScheduledReporterFactoryBean<T extends ScheduledRe
 	}
 
 	@Override
+	/** @return return the phase. */
 	public int getPhase() {
 		return 0;
 	}
 
 	@Override
+	/**
+	 * <p>Stop.</p>
+	 * @param callback
+	 */
 	public void stop(Runnable callback) {
 		stop();
 		callback.run();
 	}
 
 	@Override
+	/** @return return whether auto startup is enabled. */
 	public boolean isAutoStartup() {
 		return true;
 	}

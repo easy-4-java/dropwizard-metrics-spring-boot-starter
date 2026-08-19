@@ -19,10 +19,20 @@ import java.util.NoSuchElementException;
 
 import com.codahale.metrics.spring.boot.MetricsReportProperties;
 
+/**
+ * <p>Auto-configuration for GraphiteReporterProperties.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class GraphiteReporterProperties extends ReporterProperties {
 
 	public static final String PREFIX = MetricsReportProperties.PREFIX + ".graphite";
 	
+	/**
+	 * <p>Auto-configuration for Transport.</p>
+	 * @author <a href="https://github.com/loong10k">Loong Wan</a>
+	 * @since 1.0.0
+	 */
 	public enum Transport {
 
 		RABBITMQ("rabbitmq"), TCP("tcp"), UDP("udp"), PICKLE("pickle");
@@ -33,18 +43,37 @@ public class GraphiteReporterProperties extends ReporterProperties {
 			this.transport = transport;
 		}
 
+		/**
+		 * <p>Get.</p>
+		 * @return the result
+		 */
 		public String get() {
 			return transport;
 		}
 		
+		/**
+		 * <p>Equals.</p>
+		 * @param transport
+		 * @return the result
+		 */
 		public boolean equals(Transport transport){
 			return this.compareTo(transport) == 0;
 		}
 		
+		/**
+		 * <p>Equals.</p>
+		 * @param transport
+		 * @return the result
+		 */
 		public boolean equals(String transport){
 			return this.compareTo(Transport.valueOfIgnoreCase(transport)) == 0;
 		}
 		
+		/**
+		 * <p>Value of ignore case.</p>
+		 * @param key
+		 * @return the result
+		 */
 		public static Transport valueOfIgnoreCase(String key) {
 			for (Transport transport : Transport.values()) {
 				if(transport.get().equalsIgnoreCase(key)) {
@@ -70,50 +99,62 @@ public class GraphiteReporterProperties extends ReporterProperties {
 	// RabbitMQ Required
 	private String exchange = "";
 
+	/** @return return the host. */
 	public String getHost() {
 		return host;
 	}
 
+	/** @param host set the host. */
 	public void setHost(String host) {
 		this.host = host;
 	}
 
+	/** @return return the port. */
 	public String getPort() {
 		return port;
 	}
 
+	/** @param port set the port. */
 	public void setPort(String port) {
 		this.port = port;
 	}
 
+	/** @return return the transport. */
 	public Transport getTransport() {
 		return transport;
 	}
 
+	/** @param transport set the transport. */
 	public void setTransport(Transport transport) {
 		this.transport = transport;
 	}
 
+	/** @return return the charset. */
 	public String getCharset() {
 		return charset;
 	}
 
+	/** @param charset set the charset. */
 	public void setCharset(String charset) {
 		this.charset = charset;
 	}
 
+	/** @return return the batch size. */
 	public int getBatchSize() {
 		return batchSize;
 	}
 
+	/** @param batchSize set the batch size. */
 	public void setBatchSize(int batchSize) {
 		this.batchSize = batchSize;
 	}
 
+	/** @return return the exchange. */
 	public String getExchange() {
 		return exchange;
 	}
 
+	/** @param exchange set the exchange. */
 	public void setExchange(String exchange) {
 		this.exchange = exchange;
 	}

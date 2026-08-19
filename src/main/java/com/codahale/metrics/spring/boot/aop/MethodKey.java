@@ -18,6 +18,11 @@ package com.codahale.metrics.spring.boot.aop;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
+/**
+ * <p>Auto-configuration for MethodKey.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 class MethodKey {
 
 	private final String name;
@@ -25,6 +30,11 @@ class MethodKey {
 	private final Class<?>[] parameterTypes;
 	private final int hashCode;
 
+	/**
+	 * <p>For method.</p>
+	 * @param method
+	 * @return the result
+	 */
 	public static MethodKey forMethod(Method method) {
 		return new MethodKey(method);
 	}
@@ -37,10 +47,18 @@ class MethodKey {
 	}
 
 	@Override
+	/**
+	 * <p>Hash code.</p>
+	 * @return the result
+	 */
 	public int hashCode() {
 		return hashCode;
 	}
 
+	/**
+	 * <p>Compute hash code.</p>
+	 * @return the result
+	 */
 	private int computeHashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -51,6 +69,11 @@ class MethodKey {
 	}
 
 	@Override
+	/**
+	 * <p>Equals.</p>
+	 * @param obj
+	 * @return the result
+	 */
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
@@ -66,6 +89,10 @@ class MethodKey {
 	}
 
 	@Override
+	/**
+	 * <p>To string.</p>
+	 * @return the result
+	 */
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append(returnType.getSimpleName());

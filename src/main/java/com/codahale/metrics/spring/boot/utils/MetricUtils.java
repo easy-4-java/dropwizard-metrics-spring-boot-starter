@@ -27,34 +27,88 @@ import com.codahale.metrics.annotation.Metered;
 import com.codahale.metrics.annotation.Metric;
 import com.codahale.metrics.annotation.Timed;
 
+/**
+ * <p>Auto-configuration for MetricUtils.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class MetricUtils {
 
 	private MetricUtils() {}
 
+	/**
+	 * <p>For timed method.</p>
+	 * @param klass
+	 * @param member
+	 * @param annotation
+	 * @return the result
+	 */
 	public static String forTimedMethod(Class<?> klass, Member member, Timed annotation) {
 		return chooseName(annotation.name(), annotation.absolute(), klass, member);
 	}
 
+	/**
+	 * <p>For metered method.</p>
+	 * @param klass
+	 * @param member
+	 * @param annotation
+	 * @return the result
+	 */
 	public static String forMeteredMethod(Class<?> klass, Member member, Metered annotation) {
 		return chooseName(annotation.name(), annotation.absolute(), klass, member);
 	}
 
+	/**
+	 * <p>For gauge.</p>
+	 * @param klass
+	 * @param member
+	 * @param annotation
+	 * @return the result
+	 */
 	public static String forGauge(Class<?> klass, Member member, Gauge annotation) {
 		return chooseName(annotation.name(), annotation.absolute(), klass, member);
 	}
 
+	/**
+	 * <p>For cached gauge.</p>
+	 * @param klass
+	 * @param member
+	 * @param annotation
+	 * @return the result
+	 */
 	public static String forCachedGauge(Class<?> klass, Member member, CachedGauge annotation) {
 		return chooseName(annotation.name(), annotation.absolute(), klass, member);
 	}
 
+	/**
+	 * <p>For exception metered method.</p>
+	 * @param klass
+	 * @param member
+	 * @param annotation
+	 * @return the result
+	 */
 	public static String forExceptionMeteredMethod(Class<?> klass, Member member, ExceptionMetered annotation) {
 		return chooseName(annotation.name(), annotation.absolute(), klass, member, ExceptionMetered.DEFAULT_NAME_SUFFIX);
 	}
 
+	/**
+	 * <p>For counted method.</p>
+	 * @param klass
+	 * @param member
+	 * @param annotation
+	 * @return the result
+	 */
 	public static String forCountedMethod(Class<?> klass, Member member, Counted annotation) {
 		return chooseName(annotation.name(), annotation.absolute(), klass, member);
 	}
 
+	/**
+	 * <p>For metric field.</p>
+	 * @param klass
+	 * @param member
+	 * @param annotation
+	 * @return the result
+	 */
 	public static String forMetricField(Class<?> klass, Member member, Metric annotation) {
 		return chooseName(annotation.name(), annotation.absolute(), klass, member);
 	}

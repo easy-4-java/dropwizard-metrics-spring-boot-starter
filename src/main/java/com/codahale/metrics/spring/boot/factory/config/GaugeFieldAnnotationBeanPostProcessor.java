@@ -26,6 +26,11 @@ import com.codahale.metrics.spring.boot.ext.filter.AnnotationFilter;
 import com.codahale.metrics.spring.boot.utils.MetricUtils;
 
 
+/**
+ * <p>Auto-configuration for GaugeFieldAnnotationBeanPostProcessor.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class GaugeFieldAnnotationBeanPostProcessor extends AbstractAnnotationBeanPostProcessor implements Ordered {
 
 	private static final AnnotationFilter FILTER = new AnnotationFilter(Gauge.class, AnnotationFilter.INSTANCE_FIELDS);
@@ -38,6 +43,13 @@ public class GaugeFieldAnnotationBeanPostProcessor extends AbstractAnnotationBea
 	}
 
 	@Override
+	/**
+	 * <p>With field.</p>
+	 * @param bean
+	 * @param beanName
+	 * @param targetClass
+	 * @param field
+	 */
 	protected void withField(final Object bean, String beanName, Class<?> targetClass, final Field field) {
 		ReflectionUtils.makeAccessible(field);
 
@@ -46,6 +58,7 @@ public class GaugeFieldAnnotationBeanPostProcessor extends AbstractAnnotationBea
 
 		metrics.register(metricName, new com.codahale.metrics.Gauge<Object>() {
 			@Override
+			/** @return return the value. */
 			public Object getValue() {
 				Object value = ReflectionUtils.getField(field, bean);
 				if (value instanceof com.codahale.metrics.Gauge) {
@@ -59,6 +72,7 @@ public class GaugeFieldAnnotationBeanPostProcessor extends AbstractAnnotationBea
 	}
 
 	@Override
+	/** @return return the order. */
 	public int getOrder() {
 		return LOWEST_PRECEDENCE;
 	}

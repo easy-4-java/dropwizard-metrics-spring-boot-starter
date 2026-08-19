@@ -33,6 +33,11 @@ import com.codahale.metrics.spring.boot.factory.AdviceFactory;
 import com.codahale.metrics.spring.boot.utils.MetricUtils;
 
 
+/**
+ * <p>Auto-configuration for TimedMethodInterceptor.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class TimedMethodInterceptor extends AbstractMetricMethodInterceptor<Timed, Timer> implements Ordered {
 
 	public static final Class<Timed> ANNOTATION = Timed.class;
@@ -44,6 +49,13 @@ public class TimedMethodInterceptor extends AbstractMetricMethodInterceptor<Time
 	}
 
 	@Override
+	/**
+	 * <p>Invoke.</p>
+	 * @param invocation
+	 * @param timer
+	 * @param annotation
+	 * @return the result
+	 */
 	protected Object invoke(MethodInvocation invocation, Timer timer, Timed annotation) throws Throwable {
 		final Context timerCtx = timer.time();
 		try {
@@ -55,23 +67,44 @@ public class TimedMethodInterceptor extends AbstractMetricMethodInterceptor<Time
 	}
 
 	@Override
+	/**
+	 * <p>Build metric.</p>
+	 * @param metricRegistry
+	 * @param metricName
+	 * @param annotation
+	 * @return the result
+	 */
 	protected Timer buildMetric(MetricRegistry metricRegistry, String metricName, Timed annotation) {
 		return metricRegistry.timer(metricName);
 	}
 
 	@Override
+	/**
+	 * <p>Build metric name.</p>
+	 * @param targetClass
+	 * @param method
+	 * @param annotation
+	 * @return the result
+	 */
 	protected String buildMetricName(Class<?> targetClass, Method method, Timed annotation) {
 		return MetricUtils.forTimedMethod(targetClass, method, annotation);
 	}
 
 	@Override
+	/** @return return the order. */
 	public int getOrder() {
 		return HIGHEST_PRECEDENCE;
 	}
 
+	/**
+	 * <p>Advice factory.</p>
+	 * @param metricRegistry
+	 * @return the result
+	 */
 	public static AdviceFactory adviceFactory(final MetricRegistry metricRegistry) {
 		return new AdviceFactory() {
 			@Override
+			/** @return return the advice. */
 			public Advice getAdvice(Object bean, Class<?> targetClass) {
 				return new TimedMethodInterceptor(metricRegistry, targetClass);
 			}

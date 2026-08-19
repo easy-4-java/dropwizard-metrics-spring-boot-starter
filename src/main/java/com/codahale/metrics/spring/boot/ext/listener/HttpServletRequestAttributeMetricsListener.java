@@ -7,6 +7,11 @@ import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.spring.boot.ext.MetricsFactory;
 
 
+/**
+ * <p>Auto-configuration for HttpServletRequestAttributeMetricsListener.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class HttpServletRequestAttributeMetricsListener implements ServletRequestAttributeListener {
 
 	/**
@@ -15,12 +20,20 @@ public class HttpServletRequestAttributeMetricsListener implements ServletReques
 	protected MetricRegistry registry = MetricsFactory.getMetricRegistry("http-request-attribute");
 	
 	@Override
+	/**
+	 * <p>Attribute added.</p>
+	 * @param event
+	 */
 	public void attributeAdded(ServletRequestAttributeEvent event) {
 		String prefix = MetricRegistry.name(this.getClass(), event.getServletContext().getContextPath(), "request-attribute", "attributeAdded" );
 		registry.meter(prefix).mark();
 	}
 
 	@Override
+	/**
+	 * <p>Attribute removed.</p>
+	 * @param event
+	 */
 	public void attributeRemoved(ServletRequestAttributeEvent event) {
 		String prefix = MetricRegistry.name(this.getClass(), event.getServletContext().getContextPath(), "request-attribute", "attributeAdded" );
 		registry.meter(prefix).mark();
@@ -28,6 +41,10 @@ public class HttpServletRequestAttributeMetricsListener implements ServletReques
 	}
 
 	@Override
+	/**
+	 * <p>Attribute replaced.</p>
+	 * @param event
+	 */
 	public void attributeReplaced(ServletRequestAttributeEvent event) {
 		String prefix = MetricRegistry.name(this.getClass(), event.getServletContext().getContextPath(), "request-attribute", "attributeAdded" );
 		registry.meter(prefix).mark();

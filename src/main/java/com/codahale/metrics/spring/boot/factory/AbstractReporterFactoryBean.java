@@ -19,6 +19,11 @@ import com.codahale.metrics.spring.boot.ext.filter.PatternFilter;
 import com.codahale.metrics.spring.boot.factory.support.MetricPrefixSupplier;
 import com.codahale.metrics.spring.boot.property.ReporterProperties;
 
+/**
+ * <p>Auto-configuration for AbstractReporterFactoryBean.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public abstract class AbstractReporterFactoryBean<T,P extends ReporterProperties> implements FactoryBean<T>, InitializingBean, BeanFactoryAware {
 
 	private BeanFactory beanFactory;
@@ -41,14 +46,17 @@ public abstract class AbstractReporterFactoryBean<T,P extends ReporterProperties
 	}
 	
 	@Override
+	/** @return return the object type. */
 	public abstract Class<? extends T> getObjectType();
 
 	@Override
+	/** @return return whether singleton is enabled. */
 	public boolean isSingleton() {
 		return true;
 	}
 
 	@Override
+	/** @return return the object. */
 	public T getObject() {
 		if (!this.enabled) {
 			return null;
@@ -60,17 +68,27 @@ public abstract class AbstractReporterFactoryBean<T,P extends ReporterProperties
 	}
 
 	@Override
+	/**
+	 * <p>After properties set.</p>
+	 */
 	public void afterPropertiesSet() throws Exception {
 		this.instance = createInstance(properties);
 		this.initialized = true;
 	}
 
+	/**
+	 * <p>Create instance.</p>
+	 * @param properties
+	 * @return the result
+	 */
 	protected abstract T createInstance(P properties) throws Exception;
 
+	/** @return return the properties. */
 	public P getProperties() {
 		return properties;
 	}
 
+	/** @return return the property. */
 	protected String getProperty(String value, String defaultValue) {
 		if (value == null) {
 			return defaultValue;
@@ -78,11 +96,13 @@ public abstract class AbstractReporterFactoryBean<T,P extends ReporterProperties
 		return value;
 	}
 	
+	/** @return return the property. */
 	public <V> V getProperty(String value, Class<V> requiredType) {
 		return getProperty(value, requiredType, null);
 	}
 
 	@SuppressWarnings("unchecked")
+	/** @return return the property. */
 	public <V> V getProperty(String value, Class<V> requiredType, V defaultValue) {
 		if (value == null) {
 			return defaultValue;
@@ -90,6 +110,7 @@ public abstract class AbstractReporterFactoryBean<T,P extends ReporterProperties
 		return (V) getConversionService().convert(value, TypeDescriptor.forObject(value), TypeDescriptor.valueOf(requiredType));
 	}
 
+	/** @return return the metric filter. */
 	public MetricFilter getMetricFilter() {
 		if (!ObjectUtils.isEmpty(metricFilter)) {
 			return metricFilter;
@@ -105,6 +126,7 @@ public abstract class AbstractReporterFactoryBean<T,P extends ReporterProperties
 		return MetricFilter.ALL;
 	}
 
+	/** @return return the prefix. */
 	public String getPrefix() {
 		if (StringUtils.hasText(properties.getPrefix())) {
 			return properties.getPrefix();
@@ -115,43 +137,53 @@ public abstract class AbstractReporterFactoryBean<T,P extends ReporterProperties
 		return null;
 	}
 
+	/** @param metricRegistry set the metric registry. */
 	public void setMetricRegistry(final MetricRegistry metricRegistry) {
 		this.metricRegistry = metricRegistry;
 	}
 
+	/** @return return the metric registry. */
 	public MetricRegistry getMetricRegistry() {
 		return metricRegistry;
 	}
 
+	/** @param enabled set the enabled. */
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
 
+	/** @return return whether enabled is enabled. */
 	public boolean isEnabled() {
 		return this.enabled;
 	}
 
+	/** @return return the clock. */
 	public Clock getClock() {
 		return clock;
 	}
 
+	/** @param clock set the clock. */
 	public void setClock(Clock clock) {
 		this.clock = clock;
 	}
 
+	/** @return return the prefix supplier. */
 	public MetricPrefixSupplier getPrefixSupplier() {
 		return prefixSupplier;
 	}
 
+	/** @param prefixSupplier set the prefix supplier. */
 	public void setPrefixSupplier(MetricPrefixSupplier prefixSupplier) {
 		this.prefixSupplier = prefixSupplier;
 	}
 
+	/** @param metricFilter set the metric filter. */
 	public void setMetricFilter(MetricFilter metricFilter) {
 		this.metricFilter = metricFilter;
 	}
 	
 	@Override
+	/** @param beanFactory set the bean factory. */
 	public void setBeanFactory(final BeanFactory beanFactory) {
 		this.beanFactory = beanFactory;
 		if (beanFactory instanceof ConfigurableBeanFactory) {
@@ -159,10 +191,12 @@ public abstract class AbstractReporterFactoryBean<T,P extends ReporterProperties
 		}
 	}
 
+	/** @return return the bean factory. */
 	public BeanFactory getBeanFactory() {
 		return this.beanFactory;
 	}
 
+	/** @return return the conversion service. */
 	public ConversionService getConversionService() {
 		if (this.conversionService == null) {
 			this.conversionService = new DefaultConversionService();

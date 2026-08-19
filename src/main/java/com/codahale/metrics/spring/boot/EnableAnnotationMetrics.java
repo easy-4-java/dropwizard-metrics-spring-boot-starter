@@ -40,6 +40,11 @@ import com.codahale.metrics.spring.boot.factory.support.MetricsAnnotationDrivenR
 @Documented
 @Inherited
 @Import({ MetricsAnnotationDrivenRegistrar.class })
+/**
+ * <p>Auto-configuration for EnableAnnotationMetrics.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public @interface EnableAnnotationMetrics {
 
 }

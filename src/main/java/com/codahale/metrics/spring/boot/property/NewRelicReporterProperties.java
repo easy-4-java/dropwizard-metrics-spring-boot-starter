@@ -17,15 +17,22 @@ package com.codahale.metrics.spring.boot.property;
 
 import com.codahale.metrics.spring.boot.MetricsReportProperties;
 
+/**
+ * <p>Auto-configuration for NewRelicReporterProperties.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class NewRelicReporterProperties extends ReporterProperties  {
    
 	public static final String PREFIX = MetricsReportProperties.PREFIX + ".newrelic";
 	private String name = "NewRelic reporter";
 
+	/** @return return the name. */
 	public String getName() {
 		return name;
 	}
 
+	/** @param name set the name. */
 	public void setName(String name) {
 		this.name = name;
 	}

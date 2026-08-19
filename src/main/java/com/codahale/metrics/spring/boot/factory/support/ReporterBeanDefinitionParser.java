@@ -19,6 +19,11 @@ import org.springframework.beans.factory.support.AbstractBeanDefinition;
 
 import com.codahale.metrics.spring.boot.MetricsReportProperties;
 
+/**
+ * <p>Auto-configuration for ReporterBeanDefinitionParser.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public interface ReporterBeanDefinitionParser {
 
 	String getType();

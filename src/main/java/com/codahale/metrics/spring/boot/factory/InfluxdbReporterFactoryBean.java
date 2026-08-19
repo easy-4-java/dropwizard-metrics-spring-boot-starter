@@ -146,11 +146,17 @@ public class InfluxdbReporterFactoryBean
 	}
 
 	@Override
+	/** @return return the object type. */
 	public Class<InfluxDbReporter> getObjectType() {
 		return InfluxDbReporter.class;
 	}
 
 	@Override
+	/**
+	 * <p>Create instance.</p>
+	 * @param properties
+	 * @return the result
+	 */
 	protected InfluxDbReporter createInstance(InfluxdbReporterProperties properties) {
 
 		final InfluxDbReporter.Builder reporter = InfluxDbReporter.forRegistry(getMetricRegistry())
@@ -200,6 +206,10 @@ public class InfluxdbReporterFactoryBean
 		}
 	}
 
+	/**
+	 * <p>Build measurement mappings.</p>
+	 * @return the result
+	 */
 	protected Map<String, String> buildMeasurementMappings() {
 		
 		Map<String, String> mappings = new HashMap<String, String>(getProperties().getDefaultMeasurementMappings());
@@ -219,6 +229,7 @@ public class InfluxdbReporterFactoryBean
 		return mappings;
 	}
 
+	/** @return return whether measurement mapping regular expressions is enabled. */
 	public boolean isMeasurementMappingRegularExpressions() {
 		for (Map.Entry<String, String> entry : buildMeasurementMappings().entrySet()) {
 			try {

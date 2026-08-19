@@ -17,6 +17,10 @@ public class HttpSessionAttributeMetricsListener implements HttpSessionAttribute
 	protected MetricRegistry registry = MetricsFactory.getMetricRegistry("http-session-attribute");
 	
 	@Override
+	/**
+	 * <p>Attribute added.</p>
+	 * @param event
+	 */
 	public void attributeAdded(HttpSessionBindingEvent event) {
 
 		String prefix = MetricRegistry.name(this.getClass(), event.getSession().getServletContext().getContextPath(), "session", "attributeAdded" );
@@ -25,6 +29,10 @@ public class HttpSessionAttributeMetricsListener implements HttpSessionAttribute
 	}
 
 	@Override
+	/**
+	 * <p>Attribute removed.</p>
+	 * @param event
+	 */
 	public void attributeRemoved(HttpSessionBindingEvent event) {
 		
 		String prefix = MetricRegistry.name(this.getClass(), event.getSession().getServletContext().getContextPath(), "session", "attributeRemoved" );
@@ -33,6 +41,10 @@ public class HttpSessionAttributeMetricsListener implements HttpSessionAttribute
 	}
 
 	@Override
+	/**
+	 * <p>Attribute replaced.</p>
+	 * @param event
+	 */
 	public void attributeReplaced(HttpSessionBindingEvent event) {
 
 		String prefix = MetricRegistry.name(this.getClass(), event.getSession().getServletContext().getContextPath(), "session", "attributeReplaced" );

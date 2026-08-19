@@ -24,6 +24,11 @@ import org.springframework.util.StringUtils;
 import com.codahale.metrics.jmx.JmxReporter;
 import com.codahale.metrics.spring.boot.property.JmxReporterProperties;
 
+/**
+ * <p>Auto-configuration for JmxReporterFactoryBean.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class JmxReporterFactoryBean extends AbstractReporterFactoryBean<JmxReporter,JmxReporterProperties> implements SmartLifecycle, DisposableBean {
 
 	private boolean running = false;
@@ -34,11 +39,17 @@ public class JmxReporterFactoryBean extends AbstractReporterFactoryBean<JmxRepor
 	}
 
 	@Override
+	/** @return return the object type. */
 	public Class<JmxReporter> getObjectType() {
 		return JmxReporter.class;
 	}
 
 	@Override
+	/**
+	 * <p>Create instance.</p>
+	 * @param properties
+	 * @return the result
+	 */
 	protected JmxReporter createInstance(JmxReporterProperties properties) {
 		final JmxReporter.Builder reporter = JmxReporter.forRegistry(getMetricRegistry())
 				.convertDurationsTo(properties.getDurationUnit())
@@ -57,6 +68,9 @@ public class JmxReporterFactoryBean extends AbstractReporterFactoryBean<JmxRepor
 	}
 
 	@Override
+	/**
+	 * <p>Start.</p>
+	 */
 	public void start() {
 		if (isEnabled() && !isRunning()) {
 			getObject().start();
@@ -65,6 +79,9 @@ public class JmxReporterFactoryBean extends AbstractReporterFactoryBean<JmxRepor
 	}
 
 	@Override
+	/**
+	 * <p>Stop.</p>
+	 */
 	public void stop() {
 		if (isRunning()) {
 			getObject().stop();
@@ -73,35 +90,47 @@ public class JmxReporterFactoryBean extends AbstractReporterFactoryBean<JmxRepor
 	}
 
 	@Override
+	/** @return return whether running is enabled. */
 	public boolean isRunning() {
 		return running;
 	}
 
 	@Override
+	/**
+	 * <p>Destroy.</p>
+	 */
 	public void destroy() throws Exception {
 		stop();
 	}
 
 	@Override
+	/** @return return whether auto startup is enabled. */
 	public boolean isAutoStartup() {
 		return true;
 	}
 
 	@Override
+	/**
+	 * <p>Stop.</p>
+	 * @param runnable
+	 */
 	public void stop(Runnable runnable) {
 		stop();
 		runnable.run();
 	}
 
 	@Override
+	/** @return return the phase. */
 	public int getPhase() {
 		return 0;
 	}
 
+	/** @return return the value of getmBeanServer. */
 	public MBeanServer getmBeanServer() {
 		return mBeanServer;
 	}
 
+	/** @param mBeanServer set the value of setmBeanServer. */
 	public void setmBeanServer(MBeanServer mBeanServer) {
 		this.mBeanServer = mBeanServer;
 	}

@@ -40,6 +40,11 @@ import com.codahale.metrics.spring.boot.factory.support.MetricsServletRegistrar;
 @Documented
 @Inherited
 @Import({ MetricsServletRegistrar.class })
+/**
+ * <p>Auto-configuration for EnableServletMetrics.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public @interface EnableServletMetrics {
 
 }

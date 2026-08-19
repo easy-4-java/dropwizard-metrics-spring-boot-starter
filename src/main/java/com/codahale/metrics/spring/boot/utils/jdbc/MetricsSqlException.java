@@ -34,6 +34,7 @@ public class MetricsSqlException extends MetricsException {
     }
 
     @Override
+    /** @return return the message. */
     public String getMessage() {
         String title = super.getMessage();
         String underline = trimOrPad("", title.length(), '-');

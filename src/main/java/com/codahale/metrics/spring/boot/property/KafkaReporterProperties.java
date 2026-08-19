@@ -17,6 +17,11 @@ package com.codahale.metrics.spring.boot.property;
 
 import com.codahale.metrics.spring.boot.MetricsReportProperties;
 
+/**
+ * <p>Auto-configuration for KafkaReporterProperties.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class KafkaReporterProperties extends ReporterProperties {
 
 	public static final String PREFIX = MetricsReportProperties.PREFIX + ".kafka";
@@ -26,42 +31,52 @@ public class KafkaReporterProperties extends ReporterProperties {
 	private String ip;
 	private String topic;
 
+	/** @return return the name. */
 	public String getName() {
 		return name;
 	}
 
+	/** @param name set the name. */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/** @return return whether show samples is enabled. */
 	public boolean isShowSamples() {
 		return showSamples;
 	}
 
+	/** @param showSamples set the show samples. */
 	public void setShowSamples(boolean showSamples) {
 		this.showSamples = showSamples;
 	}
 
+	/** @return return the host name. */
 	public String getHostName() {
 		return hostName;
 	}
 
+	/** @param hostName set the host name. */
 	public void setHostName(String hostName) {
 		this.hostName = hostName;
 	}
 
+	/** @return return the ip. */
 	public String getIp() {
 		return ip;
 	}
 
+	/** @param ip set the ip. */
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
 
+	/** @return return the topic. */
 	public String getTopic() {
 		return topic;
 	}
 
+	/** @param topic set the topic. */
 	public void setTopic(String topic) {
 		this.topic = topic;
 	}

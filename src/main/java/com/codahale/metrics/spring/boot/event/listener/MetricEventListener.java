@@ -24,6 +24,11 @@ import org.springframework.context.ApplicationListener;
 
 import com.codahale.metrics.spring.boot.ext.MetricsFactory;
 
+/**
+ * <p>Auto-configuration for MetricEventListener.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public abstract class MetricEventListener<E extends ApplicationEvent> implements ApplicationListener<E>, InitializingBean {
 
 	@Autowired
@@ -36,37 +41,48 @@ public abstract class MetricEventListener<E extends ApplicationEvent> implements
 	protected TimeUnit unit = TimeUnit.SECONDS;
 	
 	@Override
+	/**
+	 * <p>After properties set.</p>
+	 */
 	public void afterPropertiesSet() throws Exception {
 	}
 	
+	/** @return return the metrics factory. */
 	public MetricsFactory getMetricsFactory() {
 		return metricsFactory;
 	}
 
+	/** @param metricsFactory set the metrics factory. */
 	public void setMetricsFactory(MetricsFactory metricsFactory) {
 		this.metricsFactory = metricsFactory;
 	}
 
+	/** @return return the initial delay. */
 	public long getInitialDelay() {
 		return initialDelay;
 	}
 
+	/** @param initialDelay set the initial delay. */
 	public void setInitialDelay(long initialDelay) {
 		this.initialDelay = initialDelay;
 	}
 
+	/** @return return the period. */
 	public long getPeriod() {
 		return period;
 	}
 
+	/** @param period set the period. */
 	public void setPeriod(long period) {
 		this.period = period;
 	}
 
+	/** @return return the unit. */
 	public TimeUnit getUnit() {
 		return unit;
 	}
 
+	/** @param unit set the unit. */
 	public void setUnit(TimeUnit unit) {
 		this.unit = unit;
 	}

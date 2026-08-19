@@ -44,12 +44,22 @@ import com.codahale.metrics.spring.boot.ext.listener.HttpSessionMetricsListener;
 
 @Configuration
 @ConditionalOnClass({ EnableInstrumentedMetrics.class })
+/**
+ * <p>Auto-configuration for MetricsInstrumentedRegistrar.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class MetricsInstrumentedRegistrar {
 
 	/*
 	 * 通过该方式将metricRegistry注入到对应的属性值中以便各个组件使用
 	 */
 	@Bean("filterAttributeExporter")
+	/**
+	 * <p>Filter attribute exporter.</p>
+	 * @param registry
+	 * @return the result
+	 */
 	public ServletContextAttributeExporter filterAttributeExporter(MetricRegistry registry) {
 		
 		ServletContextAttributeExporter attributeExporter = new ServletContextAttributeExporter();
@@ -66,6 +76,10 @@ public class MetricsInstrumentedRegistrar {
 	}
  
 	@Bean
+	/**
+	 * <p>Instrumented filter.</p>
+	 * @return the result
+	 */
 	public FilterRegistrationBean instrumentedFilter() {
 		
 		InstrumentedFilter filter = new InstrumentedFilter();
@@ -77,30 +91,50 @@ public class MetricsInstrumentedRegistrar {
 	}
 
 	@Bean
+	/**
+	 * <p>Http servlet context attribute metrics listener.</p>
+	 * @return the result
+	 */
 	public ServletListenerRegistrationBean<ServletContextAttributeListener> httpServletContextAttributeMetricsListener() {
 		HttpServletContextAttributeMetricsListener linstener = new HttpServletContextAttributeMetricsListener();
 		return new ServletListenerRegistrationBean<ServletContextAttributeListener>(linstener);
 	}
 	
 	@Bean
+	/**
+	 * <p>Http servlet request attribute metrics listener.</p>
+	 * @return the result
+	 */
 	public ServletListenerRegistrationBean<ServletRequestAttributeListener> httpServletRequestAttributeMetricsListener() {
 		HttpServletRequestAttributeMetricsListener linstener = new HttpServletRequestAttributeMetricsListener();
 		return new ServletListenerRegistrationBean<ServletRequestAttributeListener>(linstener);
 	}
 	
 	@Bean
+	/**
+	 * <p>Http servlet request metrics listener.</p>
+	 * @return the result
+	 */
 	public ServletListenerRegistrationBean<ServletRequestListener> httpServletRequestMetricsListener() {
 		HttpServletRequestMetricsListener linstener = new HttpServletRequestMetricsListener();
 		return new ServletListenerRegistrationBean<ServletRequestListener>(linstener);
 	}
 	
 	@Bean
+	/**
+	 * <p>Http session attribute metrics listener.</p>
+	 * @return the result
+	 */
 	public ServletListenerRegistrationBean<HttpSessionAttributeListener> httpSessionAttributeMetricsListener() {
 		HttpSessionAttributeMetricsListener linstener = new HttpSessionAttributeMetricsListener();
 		return new ServletListenerRegistrationBean<HttpSessionAttributeListener>(linstener);
 	}
 	
 	@Bean
+	/**
+	 * <p>Http session metrics listener.</p>
+	 * @return the result
+	 */
 	public ServletListenerRegistrationBean<HttpSessionListener> httpSessionMetricsListener() {
 		HttpSessionMetricsListener linstener = new HttpSessionMetricsListener();
 		return new ServletListenerRegistrationBean<HttpSessionListener>(linstener);

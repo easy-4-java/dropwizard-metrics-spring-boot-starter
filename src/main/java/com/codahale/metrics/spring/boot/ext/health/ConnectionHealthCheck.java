@@ -19,6 +19,11 @@ import java.sql.Connection;
 
 import com.codahale.metrics.health.HealthCheck;
 
+/**
+ * <p>Auto-configuration for ConnectionHealthCheck.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class ConnectionHealthCheck extends HealthCheck{
 	
 	protected Connection connection;
@@ -29,6 +34,10 @@ public class ConnectionHealthCheck extends HealthCheck{
     }
 
     @Override
+    /**
+     * <p>Check.</p>
+     * @return the result
+     */
     protected Result check() throws Exception {
         if (connection.isValid(timeout)) {
             return Result.healthy();

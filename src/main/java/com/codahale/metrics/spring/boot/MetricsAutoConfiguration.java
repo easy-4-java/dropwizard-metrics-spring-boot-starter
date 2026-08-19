@@ -48,6 +48,11 @@ import com.codahale.metrics.spring.boot.ext.MetricsFactory;
 @Configuration
 @ConditionalOnClass(MetricRegistry.class)
 @EnableConfigurationProperties(MetricsProperties.class)
+/**
+ * <p>Auto-configuration for MetricsAutoConfiguration.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class MetricsAutoConfiguration implements DisposableBean {
 
 	/**
@@ -60,6 +65,11 @@ public class MetricsAutoConfiguration implements DisposableBean {
 	 */
 	@Bean
 	@ConditionalOnMissingBean
+	/**
+	 * <p>Metric registry.</p>
+	 * @param properties
+	 * @return the result
+	 */
 	public MetricRegistry metricRegistry(MetricsProperties properties) {
 		MetricRegistry metricRegistry = new MetricRegistry();
 		
@@ -94,6 +104,11 @@ public class MetricsAutoConfiguration implements DisposableBean {
 	 */
 	@Bean
 	@ConditionalOnMissingBean
+	/**
+	 * <p>Health check registry.</p>
+	 * @param properties
+	 * @return the result
+	 */
 	public HealthCheckRegistry healthCheckRegistry(MetricsProperties properties) {
 		return new HealthCheckRegistry();
 	}
@@ -107,6 +122,11 @@ public class MetricsAutoConfiguration implements DisposableBean {
 	 */
 	@Bean
 	@ConditionalOnMissingBean
+	/**
+	 * <p>Metrics factory.</p>
+	 * @param metricRegistry
+	 * @return the result
+	 */
 	public MetricsFactory metricsFactory(MetricRegistry metricRegistry) {
 		MetricsFactory metricsFactory = new MetricsFactory();
 		if(metricRegistry != null) {
@@ -122,6 +142,9 @@ public class MetricsAutoConfiguration implements DisposableBean {
 	 * @throws Exception never thrown by the current implementation
 	 */
 	@Override
+	/**
+	 * <p>Destroy.</p>
+	 */
 	public void destroy() throws Exception {
 
 

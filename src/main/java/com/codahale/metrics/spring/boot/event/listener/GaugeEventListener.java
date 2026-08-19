@@ -28,6 +28,11 @@ import com.codahale.metrics.spring.boot.event.MetricEventPoint;
 import com.codahale.metrics.spring.boot.ext.MetricsFactory;
 import com.codahale.metrics.spring.boot.ext.filter.NamedFilter;
 
+/**
+ * <p>Auto-configuration for GaugeEventListener.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class GaugeEventListener extends MetricEventListener<GaugeEvent> {
 
 	protected Queue<Long> queue = new LinkedBlockingDeque<Long>();
@@ -36,11 +41,15 @@ public class GaugeEventListener extends MetricEventListener<GaugeEvent> {
 	
 	protected MetricRegistry metricRegistry;
 	
+	/** @return return the metric registry. */
 	public MetricRegistry getMetricRegistry() {
 		return metricRegistry;
 	}
 	
 	@Override
+	/**
+	 * <p>After properties set.</p>
+	 */
 	public void afterPropertiesSet() throws Exception {
 		if(getMetricsFactory() != null){
 			metricRegistry = getMetricsFactory().getRegistry();
@@ -52,6 +61,10 @@ public class GaugeEventListener extends MetricEventListener<GaugeEvent> {
 	@Async
 	@Override
 	@SuppressWarnings("rawtypes")
+	/**
+	 * <p>On application event.</p>
+	 * @param event
+	 */
 	public void onApplicationEvent(GaugeEvent event) {
 		
 		//获取绑定数据对象
@@ -69,6 +82,7 @@ public class GaugeEventListener extends MetricEventListener<GaugeEvent> {
 	        Gauge<Long> gauge = new Gauge<Long>() {
 	        	
 	            @Override
+	            /** @return return the value. */
 	            public Long getValue() {
 	            	if(queue.size() == 1){
 	            		return queue.peek();

@@ -26,6 +26,11 @@ import com.codahale.metrics.spring.boot.ext.filter.AnnotationFilter;
 import com.codahale.metrics.spring.boot.utils.MetricUtils;
 
 
+/**
+ * <p>Auto-configuration for CachedGaugeAnnotationBeanPostProcessor.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class CachedGaugeAnnotationBeanPostProcessor extends AbstractAnnotationBeanPostProcessor implements Ordered {
 
 	private static final AnnotationFilter FILTER = new AnnotationFilter(CachedGauge.class, AnnotationFilter.INSTANCE_METHODS);
@@ -38,6 +43,13 @@ public class CachedGaugeAnnotationBeanPostProcessor extends AbstractAnnotationBe
 	}
 
 	@Override
+	/**
+	 * <p>With method.</p>
+	 * @param bean
+	 * @param beanName
+	 * @param targetClass
+	 * @param method
+	 */
 	protected void withMethod(final Object bean, String beanName, Class<?> targetClass, final Method method) {
 		if (method.getParameterTypes().length > 0) {
 			throw new IllegalStateException("Method " + method.getName() + " is annotated with @CachedGauge but requires parameters.");
@@ -48,6 +60,10 @@ public class CachedGaugeAnnotationBeanPostProcessor extends AbstractAnnotationBe
 
 		metrics.register(metricName, new com.codahale.metrics.CachedGauge<Object>(annotation.timeout(), annotation.timeoutUnit()) {
 			@Override
+			/**
+			 * <p>Load value.</p>
+			 * @return the result
+			 */
 			protected Object loadValue() {
 				return ReflectionUtils.invokeMethod(method, bean);
 			}
@@ -57,6 +73,7 @@ public class CachedGaugeAnnotationBeanPostProcessor extends AbstractAnnotationBe
 	}
 
 	@Override
+	/** @return return the order. */
 	public int getOrder() {
 		return LOWEST_PRECEDENCE;
 	}

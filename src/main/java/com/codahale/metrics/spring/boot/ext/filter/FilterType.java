@@ -15,6 +15,11 @@
  */
 package com.codahale.metrics.spring.boot.ext.filter;
 
+/**
+ * <p>Auto-configuration for FilterType.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public enum FilterType {
 
 	ANTEXPRESS,

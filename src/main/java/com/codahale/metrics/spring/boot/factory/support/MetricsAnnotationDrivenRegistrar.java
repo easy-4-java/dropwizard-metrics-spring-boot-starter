@@ -38,12 +38,22 @@ import com.codahale.metrics.spring.boot.factory.config.MetricAnnotationBeanPostP
 
 @Configuration
 @ConditionalOnClass(EnableAnnotationMetrics.class)
+/**
+ * <p>Auto-configuration for MetricsAnnotationDrivenRegistrar.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class MetricsAnnotationDrivenRegistrar implements ImportBeanDefinitionRegistrar {
 
 	@Autowired
 	private MetricsProperties properties;
 	
 	@Bean
+	/**
+	 * <p>Exception metered post processor.</p>
+	 * @param metricRegistry
+	 * @return the result
+	 */
 	public AdvisingBeanPostProcessor exceptionMeteredPostProcessor(MetricRegistry metricRegistry) {
 
 		final ProxyConfig proxyConfig = new ProxyConfig();
@@ -55,6 +65,11 @@ public class MetricsAnnotationDrivenRegistrar implements ImportBeanDefinitionReg
 	}
 	
 	@Bean
+	/**
+	 * <p>Metered post processor.</p>
+	 * @param metricRegistry
+	 * @return the result
+	 */
 	public AdvisingBeanPostProcessor meteredPostProcessor(MetricRegistry metricRegistry) {
 
 		final ProxyConfig proxyConfig = new ProxyConfig();
@@ -66,6 +81,11 @@ public class MetricsAnnotationDrivenRegistrar implements ImportBeanDefinitionReg
 	}
 	
 	@Bean
+	/**
+	 * <p>Timed post processor.</p>
+	 * @param metricRegistry
+	 * @return the result
+	 */
 	public AdvisingBeanPostProcessor timedPostProcessor(MetricRegistry metricRegistry) {
 
 		final ProxyConfig proxyConfig = new ProxyConfig();
@@ -77,6 +97,11 @@ public class MetricsAnnotationDrivenRegistrar implements ImportBeanDefinitionReg
 	}
 	
 	@Bean
+	/**
+	 * <p>Counted post processor.</p>
+	 * @param metricRegistry
+	 * @return the result
+	 */
 	public AdvisingBeanPostProcessor countedPostProcessor(MetricRegistry metricRegistry) {
 
 		final ProxyConfig proxyConfig = new ProxyConfig();
@@ -88,31 +113,61 @@ public class MetricsAnnotationDrivenRegistrar implements ImportBeanDefinitionReg
 	}
 	
 	@Bean
+	/**
+	 * <p>Gauge field post processor.</p>
+	 * @param metricRegistry
+	 * @return the result
+	 */
 	public GaugeFieldAnnotationBeanPostProcessor gaugeFieldPostProcessor(MetricRegistry metricRegistry) {
 		return MetricsBeanPostProcessorFactory.gaugeField(metricRegistry);
 	}
 	
 	@Bean
+	/**
+	 * <p>Gauge method post processor.</p>
+	 * @param metricRegistry
+	 * @return the result
+	 */
 	public GaugeMethodAnnotationBeanPostProcessor gaugeMethodPostProcessor(MetricRegistry metricRegistry) {
 		return MetricsBeanPostProcessorFactory.gaugeMethod(metricRegistry);
 	}
 	
 	@Bean
+	/**
+	 * <p>Cached gauge post processor.</p>
+	 * @param metricRegistry
+	 * @return the result
+	 */
 	public CachedGaugeAnnotationBeanPostProcessor cachedGaugePostProcessor(MetricRegistry metricRegistry) {
 		return MetricsBeanPostProcessorFactory.cachedGauge(metricRegistry);
 	}
 
 	@Bean
+	/**
+	 * <p>Metric post processor.</p>
+	 * @param metricRegistry
+	 * @return the result
+	 */
 	public MetricAnnotationBeanPostProcessor metricPostProcessor(MetricRegistry metricRegistry) {
 		return MetricsBeanPostProcessorFactory.metric(metricRegistry);
 	}
 	
 	@Bean
+	/**
+	 * <p>Health check bean post processor.</p>
+	 * @param healthRegistry
+	 * @return the result
+	 */
 	public HealthCheckBeanPostProcessor healthCheckBeanPostProcessor(HealthCheckRegistry healthRegistry) {
 		return MetricsBeanPostProcessorFactory.healthCheck(healthRegistry);
 	}
 
 	@Override
+	/**
+	 * <p>Register bean definitions.</p>
+	 * @param importingClassMetadata
+	 * @param registry
+	 */
 	public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
 		
 		
@@ -127,6 +182,12 @@ public class MetricsAnnotationDrivenRegistrar implements ImportBeanDefinitionReg
 		return beanDefBuilder;
 	}
 
+	/**
+	 * <p>Register component.</p>
+	 * @param beanDefBuilder
+	 * @param registry
+	 * @return the result
+	 */
 	private String registerComponent(BeanDefinitionBuilder beanDefBuilder, BeanDefinitionRegistry registry) {
 		final AbstractBeanDefinition beanDef = beanDefBuilder.getBeanDefinition();
 		final String beanName = BeanDefinitionReaderUtils.registerWithGeneratedName(beanDef, registry);
@@ -135,6 +196,11 @@ public class MetricsAnnotationDrivenRegistrar implements ImportBeanDefinitionReg
 	}
 
 	@Override
+	/**
+	 * <p>Register bean definitions.</p>
+	 * @param importingClassMetadata
+	 * @param registry
+	 */
 	public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
 		String metricsBeanName = properties.getMetricRegistry();
 		String healthCheckBeanName = properties.getHealthCheckRegistry();

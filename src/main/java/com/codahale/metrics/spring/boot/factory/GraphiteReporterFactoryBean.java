@@ -31,6 +31,11 @@ import com.codahale.metrics.spring.boot.property.GraphiteReporterProperties;
 import com.codahale.metrics.spring.boot.property.GraphiteReporterProperties.Transport;
 import com.rabbitmq.client.ConnectionFactory;
 
+/**
+ * <p>Auto-configuration for GraphiteReporterFactoryBean.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class GraphiteReporterFactoryBean extends AbstractScheduledReporterFactoryBean<GraphiteReporter,GraphiteReporterProperties> {
 
 	private ConnectionFactory connectionFactory;
@@ -40,11 +45,17 @@ public class GraphiteReporterFactoryBean extends AbstractScheduledReporterFactor
 	}
 
 	@Override
+	/** @return return the object type. */
 	public Class<GraphiteReporter> getObjectType() {
 		return GraphiteReporter.class;
 	}
 
 	@Override
+	/**
+	 * <p>Create instance.</p>
+	 * @param properties
+	 * @return the result
+	 */
 	protected GraphiteReporter createInstance(GraphiteReporterProperties properties) {
 		
 		final GraphiteReporter.Builder builder = GraphiteReporter.forRegistry(getMetricRegistry())
@@ -83,10 +94,12 @@ public class GraphiteReporterFactoryBean extends AbstractScheduledReporterFactor
 		return builder.build(graphite);
 	}
 
+	/** @return return the connection factory. */
 	public ConnectionFactory getConnectionFactory() {
 		return connectionFactory;
 	}
 
+	/** @param connectionFactory set the connection factory. */
 	public void setConnectionFactory(ConnectionFactory connectionFactory) {
 		this.connectionFactory = connectionFactory;
 	}

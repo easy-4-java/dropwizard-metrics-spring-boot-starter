@@ -30,6 +30,11 @@ import com.codahale.metrics.spring.boot.ext.filter.AnnotationFilter;
 import com.codahale.metrics.spring.boot.utils.MetricUtils;
 
 
+/**
+ * <p>Auto-configuration for MetricAnnotationBeanPostProcessor.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class MetricAnnotationBeanPostProcessor extends AbstractAnnotationBeanPostProcessor implements Ordered {
 
 	private static final AnnotationFilter FILTER = new AnnotationFilter(Metric.class, AnnotationFilter.INJECTABLE_FIELDS);
@@ -42,6 +47,13 @@ public class MetricAnnotationBeanPostProcessor extends AbstractAnnotationBeanPos
 	}
 
 	@Override
+	/**
+	 * <p>With field.</p>
+	 * @param bean
+	 * @param beanName
+	 * @param targetClass
+	 * @param field
+	 */
 	protected void withField(Object bean, String beanName, Class<?> targetClass, Field field) {
 		final Metric annotation = field.getAnnotation(Metric.class);
 		final String metricName = MetricUtils.forMetricField(targetClass, field, annotation);
@@ -107,6 +119,7 @@ public class MetricAnnotationBeanPostProcessor extends AbstractAnnotationBeanPos
 	}
 
 	@Override
+	/** @return return the order. */
 	public int getOrder() {
 		return LOWEST_PRECEDENCE - 2;
 	}

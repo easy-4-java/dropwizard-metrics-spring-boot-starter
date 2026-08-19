@@ -22,6 +22,11 @@ import com.codahale.metrics.spring.boot.property.KafkaReporterProperties;
 import io.github.hengyunabc.metrics.KafkaReporter;
 import kafka.producer.ProducerConfig;
 
+/**
+ * <p>Auto-configuration for KafkaReporterFactoryBean.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class KafkaReporterFactoryBean extends AbstractScheduledReporterFactoryBean<KafkaReporter,KafkaReporterProperties> {
 
 	private ProducerConfig producerConfig;
@@ -31,11 +36,17 @@ public class KafkaReporterFactoryBean extends AbstractScheduledReporterFactoryBe
 	}
 
 	@Override
+	/** @return return the object type. */
 	public Class<KafkaReporter> getObjectType() {
 		return KafkaReporter.class;
 	}
 
 	@Override
+	/**
+	 * <p>Create instance.</p>
+	 * @param properties
+	 * @return the result
+	 */
 	protected KafkaReporter createInstance(KafkaReporterProperties properties) {
 		
 		final KafkaReporter.Builder reporter = KafkaReporter.forRegistry(getMetricRegistry())
@@ -70,10 +81,12 @@ public class KafkaReporterFactoryBean extends AbstractScheduledReporterFactoryBe
 		return reporter.build();
 	}
 
+	/** @return return the producer config. */
 	public ProducerConfig getProducerConfig() {
 		return producerConfig;
 	}
 
+	/** @param producerConfig set the producer config. */
 	public void setProducerConfig(ProducerConfig producerConfig) {
 		this.producerConfig = producerConfig;
 	}

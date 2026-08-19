@@ -48,16 +48,33 @@ public class SystemClock extends Clock {
         scheduleClockUpdating();
     }
 
+    /**
+     * <p>Auto-configuration for InstanceHolder.</p>
+     * @author <a href="https://github.com/loong10k">Loong Wan</a>
+     * @since 1.0.0
+     */
     private static class InstanceHolder {
         public static final SystemClock INSTANCE = new SystemClock(1);
     }
 
+    /**
+     * <p>Instance.</p>
+     * @return the result
+     */
     public static SystemClock instance() {
         return InstanceHolder.INSTANCE;
     }
 
+    /**
+     * <p>Schedule clock updating.</p>
+     */
     private void scheduleClockUpdating() {
         ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor(new ThreadFactory() {
+            /**
+             * <p>New thread.</p>
+             * @param runnable
+             * @return the result
+             */
             public Thread newThread(Runnable runnable) {
                 Thread thread = new Thread(runnable, "System Clock");
                 thread.setDaemon(true);
@@ -65,25 +82,41 @@ public class SystemClock extends Clock {
             }
         });
         scheduler.scheduleAtFixedRate(new Runnable() {
+            /**
+             * <p>Run.</p>
+             */
             public void run() {
                 now.set(System.currentTimeMillis());
             }
         }, period, period, TimeUnit.MILLISECONDS);
     }
 
+    /**
+     * <p>Current time millis.</p>
+     * @return the result
+     */
     private long currentTimeMillis() {
         return now.get();
     }
 
+    /**
+     * <p>Now.</p>
+     * @return the result
+     */
     public static long now() {
         return instance().currentTimeMillis();
     }
     
+	/**
+	 * <p>Now date.</p>
+	 * @return the result
+	 */
 	public static String nowDate() {
 		return new Timestamp(instance().currentTimeMillis()).toString();
 	}
 
 	@Override
+	/** @return return the tick. */
 	public long getTick() {
 		return now();
 	}

@@ -27,24 +27,45 @@ import com.codahale.metrics.spring.boot.event.listener.MeterEventListener;
 
 @Configuration
 @ConditionalOnClass(EnableEventMetrics.class)
+/**
+ * <p>Auto-configuration for MetricsEventListenerRegistrar.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class MetricsEventListenerRegistrar{
 
 	@Bean
+	/**
+	 * <p>Counted event listener.</p>
+	 * @return the result
+	 */
 	public CountedEventListener countedEventListener() {
 		return new CountedEventListener();
 	}
 	
 	@Bean
+	/**
+	 * <p>Gauge event listener.</p>
+	 * @return the result
+	 */
 	public GaugeEventListener gaugeEventListener() {
 		return new GaugeEventListener();
 	}
 	
 	@Bean
+	/**
+	 * <p>Histogram event listener.</p>
+	 * @return the result
+	 */
 	public HistogramEventListener histogramEventListener() {
 		return new HistogramEventListener();
 	}
 	
 	@Bean
+	/**
+	 * <p>Meter event listener.</p>
+	 * @return the result
+	 */
 	public MeterEventListener meterEventListener() {
 		return new MeterEventListener();
 	}

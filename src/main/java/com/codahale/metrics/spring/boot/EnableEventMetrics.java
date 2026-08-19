@@ -40,6 +40,11 @@ import com.codahale.metrics.spring.boot.factory.support.MetricsEventListenerRegi
 @Documented
 @Inherited
 @Import({ MetricsEventListenerRegistrar.class })
+/**
+ * <p>Auto-configuration for EnableEventMetrics.</p>
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public @interface EnableEventMetrics {
 
 }
