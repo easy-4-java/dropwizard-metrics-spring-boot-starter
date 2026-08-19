@@ -21,6 +21,8 @@ import com.codahale.metrics.spring.boot.exception.MetricsException;
 
 /**
  * This specific exception thrown when Metrics encounters a problem in SQL statement.
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
  */
 public class MetricsSqlException extends MetricsException {
     

@@ -98,6 +98,7 @@ public class MetricAnnotationBeanPostProcessor extends AbstractAnnotationBeanPos
 		}
 	}
 
+	/** Getter for metric */
 	private com.codahale.metrics.Metric getMetric(MetricRegistry metricRegistry, Class<?> type, String metricName) {
 		com.codahale.metrics.Metric metric;
 		if (Meter.class == type) {

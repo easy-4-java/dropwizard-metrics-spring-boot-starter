@@ -19,6 +19,8 @@ import java.sql.Savepoint;
 
 /**
  * An exception that triggers a rollback up to this savepoint.
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
  */
 public class RollbackWithSavepointException extends RuntimeException {
     /**

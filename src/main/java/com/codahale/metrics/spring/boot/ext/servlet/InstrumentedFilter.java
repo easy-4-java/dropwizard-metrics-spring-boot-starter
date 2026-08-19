@@ -38,6 +38,7 @@ import com.codahale.metrics.Timer;
  * Jakarta Servlet compatible replacement for {@code com.codahale.metrics.servlet.InstrumentedFilter}.
  * Tracks HTTP request metrics (status codes, active requests, timers) using Dropwizard Metrics.
  * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
  */
 public class InstrumentedFilter implements Filter {
 

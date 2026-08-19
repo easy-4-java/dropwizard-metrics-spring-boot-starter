@@ -17,6 +17,8 @@ package com.codahale.metrics.spring.boot.factory.support;
 
 /**
  * All type of datapoint senders which builder supported
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
  */
 public enum SenderType {
     HTTP,

@@ -8,6 +8,8 @@ import com.codahale.metrics.spring.boot.ext.MetricsFactory;
 
 /**
  * Session属性绑定、移除、更新速率监控
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
  */
 public class HttpSessionAttributeMetricsListener implements HttpSessionAttributeListener {
 

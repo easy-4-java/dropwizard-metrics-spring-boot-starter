@@ -36,6 +36,7 @@ import com.codahale.metrics.Clock;
  * 100万：50,10,5.0%<p>
  * @author lry
  * http://git.oschina.net/yu120/sequence
+ * @since 1.0.0
  */
 public class SystemClock extends Clock {
 

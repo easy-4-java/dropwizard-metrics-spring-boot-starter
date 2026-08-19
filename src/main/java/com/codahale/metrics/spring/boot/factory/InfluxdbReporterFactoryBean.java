@@ -138,6 +138,12 @@ import com.izettle.metrics.influxdb.InfluxDbUdpSender;
  *     </tr>
  * </table>
  */
+/**
+ * <p>Spring factory bean for InfluxdbReporter.</p>
+ *
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class InfluxdbReporterFactoryBean
 		extends AbstractScheduledReporterFactoryBean<InfluxDbReporter, InfluxdbReporterProperties> {
 

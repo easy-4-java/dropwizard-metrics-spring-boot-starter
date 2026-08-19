@@ -17,6 +17,8 @@ package com.codahale.metrics.spring.boot.exception;
 
 /**
  * Exception thrown when Metrics encounters a problem.
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
  */
 public class MetricsException extends RuntimeException {
     

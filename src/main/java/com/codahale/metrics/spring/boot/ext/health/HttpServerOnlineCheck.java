@@ -7,6 +7,12 @@ import com.codahale.metrics.health.HealthCheck;
 /*
  *	http://blog.csdn.net/paullmq/article/details/9032631
  */
+/**
+ * <p>HttpServerOnlineCheck class.</p>
+ *
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public class HttpServerOnlineCheck extends HealthCheck {
 
 	protected String httpURL;

@@ -50,6 +50,8 @@ import com.codahale.metrics.spring.boot.utils.jdbc.RollbackWithSavepointExceptio
 /**
  * A reporter which creates a comma-separated values file of the measurements
  * for each metric.
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
  */
 public class DatabaseReporter extends ScheduledReporter {
 
@@ -366,6 +368,14 @@ public class DatabaseReporter extends ScheduledReporter {
 		this.allowTimer = allowTimer;
 	}
 
+	/**
+	 * <p>report.</p>
+	 * @param gauges the gauges
+	 * @param counters the counters
+	 * @param histograms the histograms
+	 * @param meters the meters
+	 * @param timers the timers
+	 */
 	@Override
 	public void report(SortedMap<String, Gauge> gauges, 
 			SortedMap<String, Counter> counters,
