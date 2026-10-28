@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.1.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 http://maven.apache.org/xsd/maven-4.1.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.1.0</modelVersion>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -53,7 +53,7 @@
         <java.version>21</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <maven.version>3.6.3</maven.version>
+        <maven.version>4.0.0-rc-5</maven.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- Third-Party Dependencies -->
@@ -206,39 +206,7 @@
             <artifactId>metrics-spring</artifactId>
             <version>${metrics-spring.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>${slf4j.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.dropwizard.metrics</groupId>
-            <artifactId>metrics-annotation</artifactId>
-            <version>${dropwizard-metrics.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.dropwizard.metrics</groupId>
-            <artifactId>metrics-core</artifactId>
-            <version>${dropwizard-metrics.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>${commons-io.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
+
 </dependencies>
     </dependencyManagement>
 
@@ -269,11 +237,6 @@
             <scope>test</scope>
         </dependency>
         <!-- JUnit Vintage Engine: enables running legacy JUnit 4 tests -->
-        <dependency>
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
-            <scope>test</scope>
-        </dependency>
 
         <!-- For Spring Boot Configuration Processor -->
         <dependency>
@@ -311,10 +274,6 @@
         </dependency>
 
         <!-- For Guava -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
 
         <!-- For Dropwizard Metrics -->
         <dependency>
@@ -359,11 +318,6 @@
             <scope>provided</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.dropwizard.metrics/metrics-jmx -->
-        <dependency>
-            <groupId>io.dropwizard.metrics</groupId>
-            <artifactId>metrics-jmx</artifactId>
-            <scope>provided</scope>
-        </dependency>
 
         <!-- https://mvnrepository.com/artifact/io.dropwizard.metrics/metrics-graphite -->
         <dependency>
@@ -374,18 +328,8 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/io.dropwizard.metrics/metrics-ganglia -->
-        <dependency>
-            <groupId>io.dropwizard.metrics</groupId>
-            <artifactId>metrics-ganglia</artifactId>
-            <scope>provided</scope>
-        </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.coursera/metrics-datadog -->
-        <dependency>
-            <groupId>org.coursera</groupId>
-            <artifactId>metrics-datadog</artifactId>
-            <scope>provided</scope>
-        </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.rabbitmq/amqp-client -->
         <dependency>
@@ -395,58 +339,20 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.librato.metrics/metrics-librato -->
-        <dependency>
-            <groupId>com.librato.metrics</groupId>
-            <artifactId>metrics-librato</artifactId>
-            <scope>provided</scope>
-        </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.ning/async-http-client -->
-        <dependency>
-            <groupId>com.ning</groupId>
-            <artifactId>async-http-client</artifactId>
-            <scope>provided</scope>
-        </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.palominolabs.metrics/metrics-new-relic -->
-        <dependency>
-            <groupId>com.palominolabs.metrics</groupId>
-            <artifactId>metrics-new-relic</artifactId>
-            <scope>provided</scope>
-        </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.izettle/metrics-influxdb -->
-        <dependency>
-            <groupId>com.izettle</groupId>
-            <artifactId>metrics-influxdb</artifactId>
-            <scope>provided</scope>
-        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.influxdb/influxdb-java -->
-        <dependency>
-            <groupId>org.influxdb</groupId>
-            <artifactId>influxdb-java</artifactId>
-            <scope>provided</scope>
-        </dependency>
 
         <!-- https://mvnrepository.com/artifact/io.github.hengyunabc/metrics-kafka -->
-        <dependency>
-            <groupId>io.github.hengyunabc</groupId>
-            <artifactId>metrics-kafka</artifactId>
-            <scope>provided</scope>
-        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-clients</artifactId>
-            <scope>provided</scope>
-        </dependency>
 
         <!-- https://mvnrepository.com/artifact/io.github.hengyunabc/metrics-zabbix -->
-        <dependency>
-            <groupId>io.github.hengyunabc</groupId>
-            <artifactId>metrics-zabbix</artifactId>
-            <scope>provided</scope>
-        </dependency>
 
         <!-- For Commons Lang3 -->
         <dependency>
