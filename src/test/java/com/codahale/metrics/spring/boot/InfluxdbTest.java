@@ -27,7 +27,7 @@ import org.junit.Assume;
 import org.junit.Test;
 
 /**
- * 
+ *
  * @className	： InfluxdbTest
  * @description	：https://github.com/influxdata/influxdb-java
  * @author 		： <a href="https://github.com/hiwepy">hiwepy</a>
@@ -35,7 +35,7 @@ import org.junit.Test;
  * @version 	V1.0
  */
 public class InfluxdbTest {
-	
+
 	@Test
 	public void testName() throws Exception {
 		String url = System.getenv("INFLUXDB_URL");
@@ -71,5 +71,5 @@ public class InfluxdbTest {
 		influxDB.query(query);
 		influxDB.deleteDatabase(dbName);
 	}
-	
+
 }
