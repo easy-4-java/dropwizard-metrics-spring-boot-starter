@@ -13,4 +13,6 @@ permissions:
 jobs:
   build:
     uses: easy-4-java/.github/.github/workflows/maven-starter-ci.yml@main
+    with:
+      java-version: '8'
     secrets: inherit
