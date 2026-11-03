@@ -23,6 +23,7 @@ import org.influxdb.InfluxDBFactory;
 import org.influxdb.dto.BatchPoints;
 import org.influxdb.dto.Point;
 import org.influxdb.dto.Query;
+import org.junit.Assume;
 import org.junit.Test;
 
 /**
@@ -37,7 +38,12 @@ public class InfluxdbTest {
 	
 	@Test
 	public void testName() throws Exception {
-		InfluxDB influxDB = InfluxDBFactory.connect("http://121.43.110.87:8086", "admin", "admin");
+		String url = System.getenv("INFLUXDB_URL");
+		String user = System.getenv("INFLUXDB_USER");
+		String password = System.getenv("INFLUXDB_PASSWORD");
+		Assume.assumeTrue("InfluxDB integration test requires connection settings",
+				url != null && user != null && password != null);
+		InfluxDB influxDB = InfluxDBFactory.connect(url, user, password);
 		String dbName = "aTimeSeries";
 		influxDB.createDatabase(dbName);
 
